@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright 2019 Adobe. All rights reserved.
+    This file is licensed to you under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License. You may obtain a copy
+    of the License at http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software distributed under
+    the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+    OF ANY KIND, either express or implied. See the License for the specific language
+    governing permissions and limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.adobe.commerce.cif</groupId>
+  <artifactId>cif-project-archetype</artifactId>
+  <version>1-SNAPSHOT</version>
+  <packaging>maven-archetype</packaging>
+
+  <name>AEM CIF Project Archetype</name>
+  <description>AEM CIF Project Archetype</description>
+
+  <scm>
+      <connection>scm:git:https://github.com/adobe/aem-cif-project-archetype.git</connection>
+      <developerConnection>scm:git:https://github.com/adobe/aem-cif-project-archetype.git</developerConnection>
+      <url>https://github.com/adobe/aem-cif-project-archetype/tree/master/</url>
+      <tag>HEAD</tag>
+  </scm>
+  <organization>
+      <name>Adobe</name>
+      <url>https://www.adobe.com</url>
+  </organization>
+  <licenses>
+      <license>
+          <name>The Apache License, Version 2.0</name>
+          <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      </license>
+  </licenses>
+
+  <build>
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.archetype</groupId>
+        <artifactId>archetype-packaging</artifactId>
+        <version>2.2</version>
+      </extension>
+    </extensions>
+
+    <plugins>
+      <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>2.6</version>
+        <executions>
+          <execution>
+            <!-- #43134 - Unable to checkout Granite on Windows -->
+            <id>copy-archetype-resources</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.outputDirectory}/archetype-resources</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>src/main/archetype</directory>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-checkstyle-plugin</artifactId>
+            <version>2.15</version>
+            <configuration>
+                <includes>**\/*.java,**\/*.xml</includes>
+                <sourceDirectory>src/main/archetype</sourceDirectory>
+                <configLocation>src/main/resources/checkstyle.xml</configLocation>
+                <encoding>UTF-8</encoding>
+                <consoleOutput>true</consoleOutput>
+                <addDefaultExcludes>false</addDefaultExcludes>
+                <failsOnError>true</failsOnError>
+                <linkXRef>false</linkXRef>
+            </configuration>
+            <executions>
+                <execution>
+                    <id>checkstyle</id>
+                    <phase>verify</phase>
+                    <goals>
+                        <goal>check</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-release-plugin</artifactId>
+            <version>2.5.2</version>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>2.20</version>
+        </plugin>
+    </plugins>
+
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-archetype-plugin</artifactId>
+          <version>2.4</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.apache.maven.shared</groupId>
+              <artifactId>maven-invoker</artifactId>
+              <version>2.2</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <distributionManagement>
+    <repository>
+      <id>${releaseRepository-Id}</id>
+      <name>${releaseRepository-Name}</name>
+      <url>${releaseRepository-URL}</url>
+    </repository>
+    <snapshotRepository>
+      <id>${snapshotRepository-Id}</id>
+      <name>${snapshotRepository-Name}</name>
+      <url>${snapshotRepository-URL}</url>
+      <uniqueVersion>false</uniqueVersion>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <developers>
+      <developer>
+          <name>Mark J. Becker</name>
+          <email>mabecker@adobe.com</email>
+          <organization>Adobe</organization>
+          <organizationUrl>https://www.adobe.com</organizationUrl>
+      </developer>
+      <developer>
+          <name>Markus Haack</name>
+          <email>mhaack@adobe.com</email>
+          <organization>Adobe</organization>
+          <organizationUrl>https://www.adobe.com</organizationUrl>
+      </developer>
+      <developer>
+          <name>Christophe Jelger</name>
+          <email>jelger@adobe.com</email>
+          <organization>Adobe</organization>
+          <organizationUrl>https://www.adobe.com</organizationUrl>
+      </developer>
+      <developer>
+          <name>Daniel Platon</name>
+          <email>platon@adobe.com</email>
+          <organization>Adobe</organization>
+          <organizationUrl>https://www.adobe.com</organizationUrl>
+      </developer>
+      <developer>
+          <name>Levente Santha</name>
+          <email>sntha@adobe.com</email>
+          <organization>Adobe</organization>
+          <organizationUrl>https://www.adobe.com</organizationUrl>
+      </developer>
+  </developers>
+
+  <properties>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+</project>
