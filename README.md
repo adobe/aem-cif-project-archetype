@@ -1,9 +1,23 @@
+[![CircleCI](https://circleci.com/gh/adobe/aem-cif-project-archetype.svg?style=svg)](https://circleci.com/gh/adobe/aem-cif-project-archetype)
+
 # CIF Project Archetype
 This archetype creates a minimal Adobe Experience Manager CIF project as a starting point for your own projects. The properties that must be provided when using this archetype allow to name as desired all parts of this project.
 
 This project is based on [aem-project-archetype](https://github.com/adobe/aem-project-archetype).
-  
-  
+
+
+---
+⚠️ **IMPORTANT** ⚠️
+
+This project was not released yet. Also the [CIF core components](https://github.com/adobe/aem-core-cif-components) project which this project depends on was not released yet. 
+
+For being able to build the archetype, make sure you checkout and build the CIF core components project locally first.
+
+Please follow the steps described in the [Building](#building) section to create a project from this archetype.
+
+---
+
+
 ## Provided Maven profiles
 The generated maven project support different deployment profiles when running the Maven install goal `mvn install` within the reactor.
 
