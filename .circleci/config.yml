@@ -42,8 +42,15 @@ shared: &shared
           - ~/.m2
         key: v1-dependencies-{{ checksum "pom.xml" }}
 
-    # run tests!
-    - run: mvn integration-test
+    - run:
+        name: Checkout and build CIF Core Components
+        command: |
+          git clone https://github.com/adobe/aem-core-cif-components.git
+          cd aem-core-cif-components && mvn clean install && cd ..
+
+    - run: 
+        name: Build Archetype
+        command: mvn integration-test
 
     - run:
         name: Save test results
