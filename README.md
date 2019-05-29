@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/adobe/aem-cif-project-archetype.svg?style=svg)](https://circleci.com/gh/adobe/aem-cif-project-archetype)
+
 # CIF Project Archetype
 This archetype creates a minimal Adobe Experience Manager CIF project as a starting point for your own projects. The properties that must be provided when using this archetype allow to name as desired all parts of this project.
 
