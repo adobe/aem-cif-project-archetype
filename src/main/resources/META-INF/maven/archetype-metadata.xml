@@ -55,6 +55,10 @@
             <defaultValue>${appsFolderName}</defaultValue>
             <validationRegex>^[a-zA-Z0-9\-_]+$</validationRegex>
         </requiredProperty>
+         <requiredProperty key="confFolderName">
+            <defaultValue>${appsFolderName}</defaultValue>
+            <validationRegex>^[a-zA-Z0-9\-_]+$</validationRegex>
+        </requiredProperty>
         <requiredProperty key="componentGroupName">
             <defaultValue>${appsFolderName}</defaultValue>
             <validationRegex>^[a-zA-Z0-9\.\-_]+$</validationRegex>
