@@ -136,10 +136,8 @@ jobs:
           name: Install GHR
           command: |
             mkdir -p tmp
-            cd tmp
-            curl -L https://github.com/tcnksm/ghr/releases/download/v0.12.1/ghr_v0.12.1_linux_amd64.tar.gz | tar xvz
-            cd ..
-            mv ghr/**/ghr ./ghr
+            curl -L https://github.com/tcnksm/ghr/releases/download/v0.12.1/ghr_v0.12.1_linux_amd64.tar.gz | tar xvz -C ./tmp
+            mv tmp/**/ghr ./ghr
             chmod +x ghr
 
       - run:
