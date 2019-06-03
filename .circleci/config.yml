@@ -160,9 +160,9 @@ workflows:
       - build-java-8
       - build-java-11
       - deploy-sample-all:
-          requires: # Only deploy after tests passed
+          requires:
             - build-java-8
             - build-java-11
-#          filters: # Upload artifact only on master
-#            branches:
-#              only: master
+          filters:
+            branches:
+              only: master
