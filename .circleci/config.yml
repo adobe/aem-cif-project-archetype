@@ -12,43 +12,85 @@
 #
 ################################################################################
 
-# Java Maven CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-java/ for more details
-#
 version: 2
 
-shared: &shared
+shared_steps:
+  - &build_all_package
+    run: 
+      name: Build All Package
+      command: |
+        ARCHETYPE_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+        mkdir -p venia-store
+        cd venia-store
+        mvn archetype:generate -B \
+          -DarchetypeGroupId="com.adobe.commerce.cif" \
+          -DarchetypeArtifactId="cif-project-archetype" \
+          -DarchetypeVersion=$ARCHETYPE_VERSION \
+          -DgroupId="com.venia.cif" \
+          -DartifactId="demo-store" \
+          -Dversion=1.0.0 \
+          -Dpackage="com.venia.cif" \
+          -DappsFolderName="venia" \
+          -DartifactName="Venia Demo Store" \
+          -DcontentFolderName="venia" \
+          -DpackageGroup="venia" \
+          -DsiteName="Venia Demo Store" \
+          -DoptionAemVersion=6.5.0 \
+          -DoptionIncludeExamples=y
+        cd demo-store
+        mvn clean package
+
+  - &install_ghr
+    run:
+      name: Install ghr
+      command: |
+        mkdir -p tmp
+        curl -L https://github.com/tcnksm/ghr/releases/download/v0.12.1/ghr_v0.12.1_linux_amd64.tar.gz | tar xvz -C ./tmp
+        mv tmp/**/ghr ./ghr
+        chmod +x ghr
+
+  - &deploy_github
+    run:
+      name: Upload artifact to GitHub
+      command: |
+        ALL_PACKAGE=$(find ./venia-store -iname 'demo-store.all-*.zip')
+        ./ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -prerelease -delete $RELEASE_VERSION $ALL_PACKAGE
+
+  - &build_core_components
+    run:
+      name: Checkout and build CIF Core Components
+      command: |
+        git clone https://github.com/adobe/aem-core-cif-components.git
+        cd aem-core-cif-components
+        mvn -B clean install
+        cd ..
+        rm -rf aem-core-cif-components
+
+  - &build_archetype
+    run: 
+      name: Build Archetype
+      command: |
+        java -version
+        mvn -v
+        mvn -B integration-test
+
+shared_build: &shared_build
   working_directory: ~/repo
 
   environment:
-    # Customize the JVM maximum heap limit
     MAVEN_OPTS: -Xmx3200m
 
   steps:
     - checkout
 
-    # Download and cache dependencies
     - restore_cache:
         keys:
           - v1-dependencies-{{ checksum "pom.xml" }}
           - v1-dependencies-
 
-    - run:
-        name: Checkout and build CIF Core Components
-        command: |
-          git clone https://github.com/adobe/aem-core-cif-components.git
-          cd aem-core-cif-components
-          mvn -B clean install
-          cd ..
-          rm -rf aem-core-cif-components
+    - *build_core_components
 
-    - run: 
-        name: Build Archetype
-        command: |
-          java -version
-          mvn -v
-          mvn -B integration-test
+    - *build_archetype
 
     - save_cache:
         paths:
@@ -61,8 +103,10 @@ shared: &shared
           mkdir -p ~/test-results/junit/
           find . -type f -regex ".*/surefire-reports/.*" -exec cp {} ~/test-results/junit/ \;
         when: always
+
     - store_test_results:
         path: ~/test-results
+
     - store_artifacts:
         path: ~/test-results/junit
 
@@ -70,85 +114,36 @@ jobs:
   build-java-8:
     docker:
       - image: circleci/openjdk:8u212-jdk-stretch
-    <<: *shared
+    <<: *shared_build
 
   build-java-11:
     docker:
       - image: circleci/openjdk:11-jdk-stretch
-    <<: *shared
-  
+    <<: *shared_build
+
   build-sample-all:
-    working_directory: ~/repo
-
-    environment:
-      # Customize the JVM maximum heap limit
-      MAVEN_OPTS: -Xmx3200m
-
     docker:
       - image: circleci/openjdk:11-jdk-stretch
 
+    working_directory: ~/repo
+
+    environment:
+      MAVEN_OPTS: -Xmx3200m
+      RELEASE_VERSION: latest
+
     steps:
       - checkout
+
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "pom.xml" }}
             - v1-dependencies-
 
-      - run:
-          name: Checkout and build CIF Core Components
-          command: |
-            git clone https://github.com/adobe/aem-core-cif-components.git
-            cd aem-core-cif-components
-            mvn -B clean install
-            cd ..
-            rm -rf aem-core-cif-components
-
-      - run: 
-          name: Build Archetype
-          command: |
-            mvn -B clean install
-
-      - run: 
-          name: Build All Package
-          command: |
-            ARCHETYPE_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
-            mkdir -p venia-store
-            cd venia-store
-            mvn archetype:generate -B \
-              -DarchetypeGroupId="com.adobe.commerce.cif" \
-              -DarchetypeArtifactId="cif-project-archetype" \
-              -DarchetypeVersion=$ARCHETYPE_VERSION \
-              -DgroupId="com.venia.cif" \
-              -DartifactId="demo-store" \
-              -Dversion=$ARCHETYPE_VERSION \
-              -Dpackage="com.venia.cif" \
-              -DappsFolderName="venia" \
-              -DartifactName="Venia Demo Store" \
-              -DcontentFolderName="venia" \
-              -DpackageGroup="venia" \
-              -DsiteName="Venia Demo Store" \
-              -DoptionAemVersion=6.5.0 \
-              -DoptionIncludeExamples=y
-            cd demo-store
-            mvn clean package
-
-      - run:
-          name: Install GHR
-          command: |
-            mkdir -p tmp
-            curl -L https://github.com/tcnksm/ghr/releases/download/v0.12.1/ghr_v0.12.1_linux_amd64.tar.gz | tar xvz -C ./tmp
-            mv tmp/**/ghr ./ghr
-            chmod +x ghr
-
-      - run:
-          name: Upload artifact to GitHub
-          command: |
-            ALL_PACKAGE=$(find ./venia-store -iname 'demo-store.all-*.zip')
-            ./ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -prerelease -delete latest $ALL_PACKAGE
-
-      - store_artifacts:
-          path: ~/repo/venia-store/demo-store/all/target/
-          destination: venia-store
+      - *build_core_components
+      - *build_archetype
+      - *build_all_package
+      - *install_ghr
+      - *deploy_github
 
 workflows:
   version: 2
