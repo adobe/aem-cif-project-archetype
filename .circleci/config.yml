@@ -72,7 +72,7 @@ shared_steps:
       command: |
         java -version
         mvn -v
-        mvn -B integration-test install
+        mvn -B integration-test
 
 shared_build: &shared_build
   working_directory: ~/repo
@@ -121,7 +121,7 @@ jobs:
       - image: circleci/openjdk:11-jdk-stretch
     <<: *shared_build
 
-  build-sample-all:
+  deploy-sample-all:
     docker:
       - image: circleci/openjdk:11-jdk-stretch
 
@@ -141,7 +141,14 @@ jobs:
             - v1-dependencies-
 
       - *build_core_components
-      - *build_archetype
+
+      - run: 
+          name: Build Archetype
+          command: |
+            java -version
+            mvn -v
+            mvn -B clean install -DskipTests
+
       - *build_all_package
       - *install_ghr
       - *deploy_github_prerelease
@@ -152,4 +159,10 @@ workflows:
     jobs:
       - build-java-8
       - build-java-11
-      - build-sample-all
+      - deploy-sample-all:
+          requires: # Only deploy after tests passed
+            - build-java-8
+            - build-java-11
+#          filters: # Upload artifact only on master
+#            branches:
+#              only: master
