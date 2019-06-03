@@ -83,3 +83,6 @@ mvn archetype:generate \
 ```
      
 Side note: The profile "adobe-public" must be activated when using profiles like "autoInstallPackage" mentioned above.
+
+## Demo Project
+For demo purposes, we generate a sample project for the latest commit to the `master` branch. You can download the project in the [release](https://github.com/adobe/aem-cif-project-archetype/releases/tag/latest) section.
