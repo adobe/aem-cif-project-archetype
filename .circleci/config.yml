@@ -72,7 +72,7 @@ shared_steps:
       command: |
         java -version
         mvn -v
-        mvn -B integration-test
+        mvn -B integration-test install
 
 shared_build: &shared_build
   working_directory: ~/repo
