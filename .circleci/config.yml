@@ -78,6 +78,12 @@ jobs:
     <<: *shared
   
   build-sample-all:
+    working_directory: ~/repo
+
+    environment:
+      # Customize the JVM maximum heap limit
+      MAVEN_OPTS: -Xmx3200m
+
     docker:
       - image: circleci/openjdk:11-jdk-stretch
 
@@ -103,7 +109,7 @@ jobs:
             mvn -B clean install
 
       - run: 
-          name: Generate all
+          name: Build All Package
           command: |
             ARCHETYPE_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
             mkdir -p venia-store
@@ -124,9 +130,26 @@ jobs:
               -DoptionAemVersion=6.5.0 \
               -DoptionIncludeExamples=y
             cd demo-store
-            mvn clean package # result in venia-store/demo-store/all/target/demo-store.all-*.zip
+            mvn clean package
+
+      - run:
+          name: Install GHR
+          command: |
+            mkdir -p tmp
+            cd tmp
+            curl -L https://github.com/tcnksm/ghr/releases/download/v0.12.1/ghr_v0.12.1_linux_amd64.tar.gz | tar xvz
+            cd ..
+            mv mv ghr/**/ghr ./ghr
+            chmod +x ghr
+
+      - run:
+          name: Upload artifact to GitHub
+          command: |
+            ALL_PACKAGE=$(find ./venia-store -iname 'demo-store.all-*.zip')
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -prerelease -delete latest $ALL_PACKAGE
+
       - store_artifacts:
-          path: ./venia-store/demo-store/all/target/
+          path: ~/repo/venia-store/demo-store/all/target/
           destination: venia-store
 
 workflows:
