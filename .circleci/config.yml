@@ -146,7 +146,7 @@ jobs:
           name: Upload artifact to GitHub
           command: |
             ALL_PACKAGE=$(find ./venia-store -iname 'demo-store.all-*.zip')
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -prerelease -delete latest $ALL_PACKAGE
+            ./ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -prerelease -delete latest $ALL_PACKAGE
 
       - store_artifacts:
           path: ~/repo/venia-store/demo-store/all/target/
