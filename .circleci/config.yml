@@ -139,7 +139,7 @@ jobs:
             cd tmp
             curl -L https://github.com/tcnksm/ghr/releases/download/v0.12.1/ghr_v0.12.1_linux_amd64.tar.gz | tar xvz
             cd ..
-            mv mv ghr/**/ghr ./ghr
+            mv ghr/**/ghr ./ghr
             chmod +x ghr
 
       - run:
