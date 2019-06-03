@@ -28,7 +28,7 @@ shared_steps:
           -DarchetypeVersion=$ARCHETYPE_VERSION \
           -DgroupId="com.venia.cif" \
           -DartifactId="demo-store" \
-          -Dversion=1.0.0 \
+          -Dversion=${VENIA_STORE_VERSION} \
           -Dpackage="com.venia.cif" \
           -DappsFolderName="venia" \
           -DartifactName="Venia Demo Store" \
@@ -49,12 +49,12 @@ shared_steps:
         mv tmp/**/ghr ./ghr
         chmod +x ghr
 
-  - &deploy_github
+  - &deploy_github_prerelease
     run:
       name: Upload artifact to GitHub
       command: |
         ALL_PACKAGE=$(find ./venia-store -iname 'demo-store.all-*.zip')
-        ./ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -prerelease -delete $RELEASE_VERSION $ALL_PACKAGE
+        ./ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -n "Venia Demo Store Project" -c ${CIRCLE_SHA1} -prerelease -delete $RELEASE_VERSION $ALL_PACKAGE
 
   - &build_core_components
     run:
@@ -130,6 +130,7 @@ jobs:
     environment:
       MAVEN_OPTS: -Xmx3200m
       RELEASE_VERSION: latest
+      VENIA_STORE_VERSION: 1.0.0
 
     steps:
       - checkout
@@ -143,7 +144,7 @@ jobs:
       - *build_archetype
       - *build_all_package
       - *install_ghr
-      - *deploy_github
+      - *deploy_github_prerelease
 
 workflows:
   version: 2
