@@ -76,6 +76,58 @@ jobs:
     docker:
       - image: circleci/openjdk:11-jdk-stretch
     <<: *shared
+  
+  build-sample-all:
+    docker:
+      - image: circleci/openjdk:11-jdk-stretch
+
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "pom.xml" }}
+            - v1-dependencies-
+
+      - run:
+          name: Checkout and build CIF Core Components
+          command: |
+            git clone https://github.com/adobe/aem-core-cif-components.git
+            cd aem-core-cif-components
+            mvn -B clean install
+            cd ..
+            rm -rf aem-core-cif-components
+
+      - run: 
+          name: Build Archetype
+          command: |
+            mvn -B clean install
+
+      - run: 
+          name: Generate all
+          command: |
+            ARCHETYPE_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+            mkdir -p venia-store
+            cd venia-store
+            mvn archetype:generate -B \
+              -DarchetypeGroupId="com.adobe.commerce.cif" \
+              -DarchetypeArtifactId="cif-project-archetype" \
+              -DarchetypeVersion=$ARCHETYPE_VERSION \
+              -DgroupId="com.venia.cif" \
+              -DartifactId="demo-store" \
+              -Dversion=$ARCHETYPE_VERSION \
+              -Dpackage="com.venia.cif" \
+              -DappsFolderName="venia" \
+              -DartifactName="Venia Demo Store" \
+              -DcontentFolderName="venia" \
+              -DpackageGroup="venia" \
+              -DsiteName="Venia Demo Store" \
+              -DoptionAemVersion=6.5.0 \
+              -DoptionIncludeExamples=y
+            cd demo-store
+            mvn clean package # result in venia-store/demo-store/all/target/demo-store.all-*.zip
+      - store_artifacts:
+          path: ./venia-store/demo-store/all/target/
+          destination: venia-store
 
 workflows:
   version: 2
@@ -83,3 +135,4 @@ workflows:
     jobs:
       - build-java-8
       - build-java-11
+      - build-sample-all
