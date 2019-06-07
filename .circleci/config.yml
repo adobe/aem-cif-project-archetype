@@ -18,7 +18,7 @@ commands:
   deploy-all-package:
     description: "Generate sample project from archetype and deploy all package to GitHub release"
     parameters:
-      name:
+      release-name:
         type: string
         default: "Venia Demo Store Project"
     steps:
@@ -56,7 +56,7 @@ commands:
           name: Upload artifact to GitHub
           command: |
             ALL_PACKAGE=$(find ./venia-store -iname 'demo-store.all-*.zip')
-            ./ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -n << parameters.name >> -c ${CIRCLE_SHA1} -prerelease -delete $RELEASE_VERSION $ALL_PACKAGE
+            ./ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -n << parameters.release-name >> -c ${CIRCLE_SHA1} -prerelease -delete $RELEASE_VERSION $ALL_PACKAGE
 
   build-archetype:
     description: "Build and verify archetype"
