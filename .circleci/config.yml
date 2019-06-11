@@ -82,7 +82,7 @@ commands:
           command: |
             java -version
             mvn -v
-            mvn -B integration-test
+            mvn -B install
             mvn help:evaluate -Dexpression=project.version -q -DforceStdout > ~/version.txt
 
       - save_cache:
