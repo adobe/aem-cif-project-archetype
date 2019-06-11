@@ -12,70 +12,144 @@
 #
 ################################################################################
 
-# Java Maven CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-java/ for more details
-#
-version: 2
+version: 2.1
 
-shared: &shared
-  working_directory: ~/repo
+commands:
+  deploy-all-package:
+    description: "Generate sample project from archetype and deploy all package to GitHub release"
+    parameters:
+      release-name:
+        type: string
+        default: "Venia Demo Store Project"
+    steps:
+      - run: 
+          name: Build All Package
+          command: |
+            ARCHETYPE_VERSION=$(< ~/version.txt)
+            mkdir -p venia-store
+            cd venia-store
+            mvn archetype:generate -B \
+              -DarchetypeGroupId="com.adobe.commerce.cif" \
+              -DarchetypeArtifactId="cif-project-archetype" \
+              -DarchetypeVersion=$ARCHETYPE_VERSION \
+              -DgroupId="com.venia.cif" \
+              -DartifactId="demo-store" \
+              -Dversion=${VENIA_STORE_VERSION} \
+              -Dpackage="com.venia.cif" \
+              -DappsFolderName="venia" \
+              -DartifactName="Venia Demo Store" \
+              -DcontentFolderName="venia" \
+              -DpackageGroup="venia" \
+              -DsiteName="Venia Demo Store" \
+              -DoptionAemVersion=6.5.0 \
+              -DoptionIncludeExamples=y
+            cd demo-store
+            mvn clean package
+      - run:
+          name: Install ghr
+          command: |
+            mkdir -p tmp
+            curl -L https://github.com/tcnksm/ghr/releases/download/v0.12.1/ghr_v0.12.1_linux_amd64.tar.gz | tar xvz -C ./tmp
+            mv tmp/**/ghr ./ghr
+            chmod +x ghr
+      - run:
+          name: Upload artifact to GitHub
+          command: |
+            ALL_PACKAGE=$(find ./venia-store -iname 'demo-store.all-*.zip')
+            ./ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -n "<< parameters.release-name >>" -c ${CIRCLE_SHA1} -prerelease -delete ${RELEASE_VERSION} ${ALL_PACKAGE}
 
-  environment:
-    # Customize the JVM maximum heap limit
-    MAVEN_OPTS: -Xmx3200m
+  build-archetype:
+    description: "Build and verify archetype"
+    steps:
+      - checkout
 
-  steps:
-    - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "pom.xml" }}
+            - v1-dependencies-
 
-    # Download and cache dependencies
-    - restore_cache:
-        keys:
-          - v1-dependencies-{{ checksum "pom.xml" }}
-          - v1-dependencies-
+      - run:
+          name: Checkout and build CIF Core Components
+          command: |
+            git clone https://github.com/adobe/aem-core-cif-components.git
+            cd aem-core-cif-components
+            mvn -B clean install
+            cd ..
+            rm -rf aem-core-cif-components
 
-    - run:
-        name: Checkout and build CIF Core Components
-        command: |
-          git clone https://github.com/adobe/aem-core-cif-components.git
-          cd aem-core-cif-components
-          mvn -B clean install
-          cd ..
-          rm -rf aem-core-cif-components
+      - run: 
+          name: Build Archetype
+          command: |
+            java -version
+            mvn -v
+            mvn -B install
+            mvn help:evaluate -Dexpression=project.version -q -DforceStdout > ~/version.txt
 
-    - run: 
-        name: Build Archetype
-        command: |
-          java -version
-          mvn -v
-          mvn -B integration-test
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: v1-dependencies-{{ checksum "pom.xml" }}
 
-    - save_cache:
-        paths:
-          - ~/.m2
-        key: v1-dependencies-{{ checksum "pom.xml" }}
+      - run:
+          name: Save test results
+          command: |
+            mkdir -p ~/test-results/junit/
+            find . -type f -regex ".*/surefire-reports/.*" -exec cp {} ~/test-results/junit/ \;
+          when: always
 
-    - run:
-        name: Save test results
-        command: |
-          mkdir -p ~/test-results/junit/
-          find . -type f -regex ".*/surefire-reports/.*" -exec cp {} ~/test-results/junit/ \;
-        when: always
-    - store_test_results:
-        path: ~/test-results
-    - store_artifacts:
-        path: ~/test-results/junit
+      - store_test_results:
+          path: ~/test-results
+
+      - store_artifacts:
+          path: ~/test-results/junit
 
 jobs:
   build-java-8:
     docker:
       - image: circleci/openjdk:8u212-jdk-stretch
-    <<: *shared
+
+    working_directory: ~/repo
+
+    environment:
+      MAVEN_OPTS: -Xmx3200m
+
+    steps:
+      - build-archetype
 
   build-java-11:
     docker:
       - image: circleci/openjdk:11-jdk-stretch
-    <<: *shared
+
+    working_directory: ~/repo
+
+    environment:
+      MAVEN_OPTS: -Xmx3200m
+
+    steps:
+      - build-archetype
+
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - .m2/*
+            - version.txt
+
+  deploy-sample-all:
+    docker:
+      - image: circleci/openjdk:11-jdk-stretch
+
+    working_directory: ~/repo
+
+    environment:
+      MAVEN_OPTS: -Xmx3200m
+      RELEASE_VERSION: latest
+      VENIA_STORE_VERSION: 1.0.0
+
+    steps:
+      - attach_workspace:
+          at: ~/
+
+      - deploy-all-package
 
 workflows:
   version: 2
@@ -83,3 +157,10 @@ workflows:
     jobs:
       - build-java-8
       - build-java-11
+      - deploy-sample-all:
+          requires:
+            - build-java-8
+            - build-java-11
+          filters:
+            branches:
+              only: master
