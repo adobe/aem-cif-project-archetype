@@ -48,7 +48,9 @@ version                   |         | Version
 package                   |         | Java Source Package
 appsFolderName            |         | /apps folder name
 artifactName              |         | Maven Project Name
+componentGroupName        |         | AEM component group name
 contentFolderName         |         | /content folder name
+confFolderName            |         | /conf folder name
 packageGroup              |         | Content Package Group name
 siteName                  |         | AEM site name
 optionAemVersion          |  6.5.0  | Target AEM version
