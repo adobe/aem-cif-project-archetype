@@ -25,7 +25,7 @@ commands:
       - run: 
           name: Build All Package
           command: |
-            ARCHETYPE_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+            ARCHETYPE_VERSION=$(< ~/version.txt)
             mkdir -p venia-store
             cd venia-store
             mvn archetype:generate -B \
@@ -83,6 +83,7 @@ commands:
             java -version
             mvn -v
             mvn -B integration-test
+            mvn help:evaluate -Dexpression=project.version -q -DforceStdout > ~/version.txt
 
       - save_cache:
           paths:
@@ -131,6 +132,7 @@ jobs:
           root: ~/
           paths:
             - .m2/*
+            - version.txt
 
   deploy-sample-all:
     docker:
