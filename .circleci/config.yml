@@ -161,6 +161,6 @@ workflows:
           requires:
             - build-java-8
             - build-java-11
-#          filters:
-#            branches:
-#              only: master
+          filters:
+            branches:
+              only: master
