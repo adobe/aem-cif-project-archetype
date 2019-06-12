@@ -12,7 +12,7 @@
             sling:resourceType="wcm/foundation/components/responsivegrid">
             <header
                 jcr:primaryType="nt:unstructured"
-                sling:resourceType="core/cif/components/structure/header/v1/header">
+                sling:resourceType="${appsFolderName}/components/structure/header">
                 <logo.svg/>
                 <navigation
                     collectAllPages="false"
@@ -32,7 +32,7 @@
             </responsivegrid>
             <footer
                 jcr:primaryType="nt:unstructured"
-                sling:resourceType="core/cif/components/structure/footer/v1/footer"/>
+                sling:resourceType="${appsFolderName}/components/structure/footer"/>
         </root>
         <cq:responsive jcr:primaryType="nt:unstructured">
             <breakpoints jcr:primaryType="nt:unstructured">

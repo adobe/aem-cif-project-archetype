@@ -3,5 +3,5 @@
     jcr:description="Page Component"
     jcr:primaryType="cq:Component"
     jcr:title="Page"
-    sling:resourceSuperType="${appsFolderName}/components/structure/page"
+    sling:resourceSuperType="core/cif/components/structure/page/v1/page"
     componentGroup=".hidden"/>
