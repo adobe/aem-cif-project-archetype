@@ -143,6 +143,8 @@
                         <include>**/*.*</include>
                     </includes>
                     <excludes>
+                        <exclude>**/*.jpg</exclude>
+                        <exclude>**/*.jpeg</exclude>
                         <exclude>**/*.png</exclude>
                         <exclude>**/image</exclude>
                         <exclude>**/file</exclude>
@@ -151,6 +153,8 @@
                 <fileSet filtered="false" packaged="false" encoding="UTF-8">
                     <directory>src/main/content</directory>
                     <includes>
+                        <include>**/*.jpg</include>
+                        <include>**/*.jpeg</include>
                         <include>**/*.png</include>
                         <include>**/image</include>
                         <include>**/file</include>
@@ -172,6 +176,8 @@
                         <include>**/*.*</include>
                     </includes>
                     <excludes>
+                        <exclude>**/*.jpg</exclude>
+                        <exclude>**/*.jpeg</exclude>
                         <exclude>**/*.png</exclude>
                         <exclude>**/image</exclude>
                         <exclude>**/file</exclude>
@@ -180,6 +186,8 @@
                 <fileSet filtered="false" packaged="false" encoding="UTF-8">
                     <directory>src/main/content</directory>
                     <includes>
+                        <include>**/*.jpg</include>
+                        <include>**/*.jpeg</include>
                         <include>**/*.png</include>
                         <include>**/image</include>
                         <include>**/file</include>
