@@ -92,15 +92,13 @@
         </module>
         <module id="${rootArtifactId}.core" dir="core" name="core">
             <fileSets>
-                <fileSet filtered="true" packaged="true"
-                    encoding="UTF-8">
+                <fileSet filtered="true" packaged="true" encoding="UTF-8">
                     <directory>src/main/java</directory>
                     <includes>
                         <include>**/*.java</include>
                     </includes>
                 </fileSet>
-                <fileSet filtered="true" packaged="true"
-                    encoding="UTF-8">
+                <fileSet filtered="true" packaged="true" encoding="UTF-8">
                     <directory>src/test/java</directory>
                     <includes>
                         <include>**/*.java</include>
@@ -110,8 +108,7 @@
         </module>
         <module id="${rootArtifactId}.ui.apps" dir="ui.apps" name="ui.apps">
             <fileSets>
-                <fileSet filtered="true" packaged="false"
-                    encoding="UTF-8">
+                <fileSet filtered="true" packaged="false" encoding="UTF-8">
                     <directory>src/main/content</directory>
                     <includes>
                         <include>**/*.*</include>
@@ -122,8 +119,7 @@
                         <exclude>**/file</exclude>
                     </excludes>
                 </fileSet>
-                <fileSet filtered="false" packaged="false"
-                    encoding="UTF-8">
+                <fileSet filtered="false" packaged="false" encoding="UTF-8">
                     <directory>src/main/content</directory>
                     <includes>
                         <include>**/*.png</include>
@@ -131,8 +127,7 @@
                         <include>**/file</include>
                     </includes>
                 </fileSet>
-                <fileSet filtered="false" packaged="false"
-                    encoding="UTF-8">
+                <fileSet filtered="false" packaged="false" encoding="UTF-8">
                     <directory>src/main/content/jcr_root</directory>
                     <includes>
                         <include>**/*</include>
@@ -142,8 +137,7 @@
         </module>
         <module id="${rootArtifactId}.ui.content" dir="ui.content" name="ui.content">
             <fileSets>
-                <fileSet filtered="true" packaged="false"
-                    encoding="UTF-8">
+                <fileSet filtered="true" packaged="false" encoding="UTF-8">
                     <directory>src/main/content</directory>
                     <includes>
                         <include>**/*.*</include>
@@ -154,8 +148,7 @@
                         <exclude>**/file</exclude>
                     </excludes>
                 </fileSet>
-                <fileSet filtered="false" packaged="false"
-                    encoding="UTF-8">
+                <fileSet filtered="false" packaged="false" encoding="UTF-8">
                     <directory>src/main/content</directory>
                     <includes>
                         <include>**/*.png</include>
@@ -163,8 +156,36 @@
                         <include>**/file</include>
                     </includes>
                 </fileSet>
-                <fileSet filtered="false" packaged="false"
-                    encoding="UTF-8">
+                <fileSet filtered="false" packaged="false" encoding="UTF-8">
+                    <directory>src/main/content/jcr_root</directory>
+                    <includes>
+                        <include>**/*</include>
+                    </includes>
+                </fileSet>
+            </fileSets>
+        </module>
+        <module id="${rootArtifactId}.samplecontent" dir="samplecontent" name="samplecontent">
+            <fileSets>
+                <fileSet filtered="true" packaged="false" encoding="UTF-8">
+                    <directory>src/main/content</directory>
+                    <includes>
+                        <include>**/*.*</include>
+                    </includes>
+                    <excludes>
+                        <exclude>**/*.png</exclude>
+                        <exclude>**/image</exclude>
+                        <exclude>**/file</exclude>
+                    </excludes>
+                </fileSet>
+                <fileSet filtered="false" packaged="false" encoding="UTF-8">
+                    <directory>src/main/content</directory>
+                    <includes>
+                        <include>**/*.png</include>
+                        <include>**/image</include>
+                        <include>**/file</include>
+                    </includes>
+                </fileSet>
+                <fileSet filtered="false" packaged="false" encoding="UTF-8">
                     <directory>src/main/content/jcr_root</directory>
                     <includes>
                         <include>**/*</include>

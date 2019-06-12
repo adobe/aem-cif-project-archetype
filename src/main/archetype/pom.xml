@@ -27,6 +27,9 @@
         <module>core</module>
         <module>ui.apps</module>
         <module>ui.content</module>
+#if ( $optionIncludeExamples == "y" )
+        <module>samplecontent</module>
+#end
     </modules>
 
     <properties>

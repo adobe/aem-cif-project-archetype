@@ -3,5 +3,5 @@
     jcr:description="Product Teaser Component"
     jcr:primaryType="cq:Component"
     jcr:title="Product Teaser"
-    sling:resourceSuperType="venia/components/commerce/productteaser/v1/productteaser"
+    sling:resourceSuperType="core/cif/components/commerce/productteaser/v1/productteaser"
     componentGroup="${componentGroupName}"/>

@@ -116,19 +116,19 @@
                             <artifactId>${rootArtifactId}.ui.content</artifactId>
                             <filter>true</filter>
                         </subPackage>
+#if ( $optionIncludeExamples == "y" )
+                        <subPackage>
+                            <groupId>${groupId}</groupId>
+                            <artifactId>${rootArtifactId}.samplecontent</artifactId>
+                            <filter>true</filter>
+                        </subPackage>
+#end
 
                         <subPackage>
                             <groupId>com.adobe.commerce.cif</groupId>
                             <artifactId>core-cif-components-apps</artifactId>
                             <filter>true</filter>
                         </subPackage>
-#if ( $optionIncludeExamples == "y" )
-                        <subPackage>
-                            <groupId>com.adobe.commerce.cif</groupId>
-                            <artifactId>core-cif-components-content</artifactId>
-                            <filter>true</filter>
-                        </subPackage>
-#end
                         <subPackage>
                             <groupId>com.adobe.commerce.cif</groupId>
                             <artifactId>cif-connector-content</artifactId>
@@ -182,6 +182,15 @@
             <version>${version}</version>
             <scope>provided</scope>
         </dependency>
+#if ( $optionIncludeExamples == "y" )
+        <dependency>
+            <groupId>${groupId}</groupId>
+            <artifactId>${rootArtifactId}.samplecontent</artifactId>
+            <type>zip</type>
+            <version>${version}</version>
+            <scope>provided</scope>
+        </dependency>
+#end
 
         <!-- GraphQL dependencies -->
         <dependency>
@@ -211,15 +220,6 @@
             <type>zip</type>
             <scope>provided</scope>
         </dependency>
-#if ( $optionIncludeExamples == "y" )
-        <dependency>
-            <groupId>com.adobe.commerce.cif</groupId>
-            <artifactId>core-cif-components-content</artifactId>
-            <type>zip</type>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-#end
 
         <!-- CIF Connector dependencies -->
         <dependency>
