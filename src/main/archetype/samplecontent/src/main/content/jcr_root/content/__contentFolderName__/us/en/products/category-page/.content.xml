@@ -10,7 +10,7 @@
         jcr:mixinTypes="[cq:LiveRelationship]"
         jcr:primaryType="cq:PageContent"
         jcr:title="Category page"
-        sling:resourceType="core/cif/components/structure/page/v1/page">
+        sling:resourceType="${appsFolderName}/components/structure/page">
         <root
             cq:lastRolledout="{Date}2019-04-17T13:22:08.513+02:00"
             cq:lastRolledoutBy="admin"

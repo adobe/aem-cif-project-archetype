@@ -4,5 +4,5 @@
     <jcr:content
         cq:template="/conf/settings/wcm/templates/empty-page-template"
         jcr:primaryType="cq:PageContent"
-        sling:resourceType="core/cif/components/structure/page/v1/page"/>
+        sling:resourceType="${appsFolderName}/components/structure/page"/>
 </jcr:root>

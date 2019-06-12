@@ -32,7 +32,7 @@
                         jcr:primaryType="nt:unstructured"
                         jcr:title="Default Layout Container"
                         sling:resourceType="wcm/core/components/policy/policy"
-                        components="[/libs/wcm/foundation/components/image,/libs/wcm/foundation/components/responsivegrid,group:CIF Core Components]">
+                        components="[/libs/wcm/foundation/components/image,/libs/wcm/foundation/components/responsivegrid,group:${componentGroupName}]">
                         <cq:authoring jcr:primaryType="nt:unstructured">
                             <assetToComponentMapping jcr:primaryType="nt:unstructured">
                                 <document
@@ -63,14 +63,14 @@
                                     droptarget="experiencefragment"
                                     resourceType="cq/experience-fragments/editor/components/experiencefragment"
                                     type="experiencefragment"/>
-                                <veniaimage
+                                <image
                                     jcr:primaryType="nt:unstructured"
                                     assetGroup="media"
                                     assetMimetype="[image/*]"
                                     droptarget="image"
-                                    resourceType="core/cif/components/content/image/v1/image"
-                                    type="veniaimage"/>
-                                <mapping_1557379287803
+                                    resourceType="${appsFolderName}/components/content/image"
+                                    type="image"/>
+                                <teaser
                                     jcr:primaryType="nt:unstructured"
                                     assetGroup="product"
                                     droptarget="product-data-reference"
@@ -88,7 +88,7 @@
                         jcr:primaryType="nt:unstructured"
                         jcr:title="AEM Venia Page"
                         sling:resourceType="wcm/core/components/policy/policy"
-                        components="[/libs/wcm/foundation/components/responsivegrid,group:CIF Core Components]">
+                        components="[/libs/wcm/foundation/components/responsivegrid,group:${componentGroupName}]">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_215532890674867>
                     <policy_543301810849945
@@ -97,13 +97,15 @@
                         jcr:primaryType="nt:unstructured"
                         jcr:title="AEM Commerce Core Components"
                         sling:resourceType="wcm/core/components/policy/policy"
-                        components="group:CIF Core Components">
+                        components="group:${componentGroupName}">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_543301810849945>
                 </responsivegrid>
             </components>
         </foundation>
     </wcm>
+
+    <!-- TODO: Point to proxy component -->
     <venia jcr:primaryType="nt:unstructured">
         <components jcr:primaryType="nt:unstructured">
             <commerce jcr:primaryType="nt:unstructured">
@@ -114,7 +116,7 @@
                                 jcr:lastModified="{Date}2019-04-01T15:42:05.554+02:00"
                                 jcr:lastModifiedBy="admin"
                                 jcr:primaryType="nt:unstructured"
-                                jcr:title="AEM CIF Core Components Product List"
+                                jcr:title="Product List"
                                 sling:resourceType="wcm/core/components/policy/policy"
                                 showTitle="true">
                                 <jcr:content jcr:primaryType="nt:unstructured"/>

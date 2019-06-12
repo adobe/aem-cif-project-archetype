@@ -11,7 +11,7 @@
         jcr:mixinTypes="[cq:LiveRelationship]"
         jcr:primaryType="cq:PageContent"
         jcr:title="Search Results"
-        sling:resourceType="core/cif/components/structure/page/v1/page"
+        sling:resourceType="${appsFolderName}/components/structure/page"
         hideInNav="true">
         <root
             cq:lastRolledout="{Date}2019-04-17T13:22:08.551+02:00"

@@ -8,7 +8,7 @@
         cq:lastModifiedBy="admin"
         cq:template="/conf/${confFolderName}/settings/wcm/templates/category-page"
         jcr:primaryType="cq:PageContent"
-        sling:resourceType="core/cif/components/structure/page/v1/page">
+        sling:resourceType="${appsFolderName}/components/structure/page">
         <cq:responsive jcr:primaryType="nt:unstructured">
             <breakpoints jcr:primaryType="nt:unstructured">
                 <phone

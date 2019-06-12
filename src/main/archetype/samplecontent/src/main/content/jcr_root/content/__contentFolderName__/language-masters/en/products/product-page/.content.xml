@@ -7,7 +7,7 @@
         cq:template="/conf/${confFolderName}/settings/wcm/templates/product-page"
         jcr:primaryType="cq:PageContent"
         jcr:title="Product page"
-        sling:resourceType="core/cif/components/structure/page/v1/page">
+        sling:resourceType="${appsFolderName}/components/structure/page">
         <root jcr:primaryType="nt:unstructured">
             <responsivegrid
                 jcr:primaryType="nt:unstructured"

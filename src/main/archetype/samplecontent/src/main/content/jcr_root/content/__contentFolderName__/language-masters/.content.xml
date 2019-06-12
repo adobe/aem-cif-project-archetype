@@ -8,7 +8,7 @@
         cq:template="/conf/${confFolderName}/settings/wcm/templates/content-page"
         jcr:primaryType="cq:PageContent"
         jcr:title="Language Masters"
-        sling:resourceType="core/cif/components/structure/page/v1/page"
+        sling:resourceType="${appsFolderName}/components/structure/page"
         hideInNav="true"/>
     <en/>
 </jcr:root>
