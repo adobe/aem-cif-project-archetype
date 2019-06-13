@@ -74,7 +74,7 @@
                                     jcr:primaryType="nt:unstructured"
                                     assetGroup="product"
                                     droptarget="product-data-reference"
-                                    resourceType="core/cif/components/commerce/productteaser/v1/productteaser"/>
+                                    resourceType="${appsFolderName}/components/commerce/productteaser"/>
                             </assetToComponentMapping>
                         </cq:authoring>
                         <jcr:content
