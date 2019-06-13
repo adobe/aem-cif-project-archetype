@@ -82,11 +82,11 @@
                             mergeList="{Boolean}true"/>
                     </default>
                     <policy_215532890674867
-                        jcr:description="Policy uses by the AEM Venia Experience pages"
+                        jcr:description="Policy uses by the CIF pages"
                         jcr:lastModified="{Date}2019-03-26T14:31:52.576+02:00"
                         jcr:lastModifiedBy="admin"
                         jcr:primaryType="nt:unstructured"
-                        jcr:title="AEM Venia Page"
+                        jcr:title="Page"
                         sling:resourceType="wcm/core/components/policy/policy"
                         components="[/libs/wcm/foundation/components/responsivegrid,group:${componentGroupName}]">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
@@ -104,27 +104,4 @@
             </components>
         </foundation>
     </wcm>
-
-    <!-- TODO: Point to proxy component -->
-    <venia jcr:primaryType="nt:unstructured">
-        <components jcr:primaryType="nt:unstructured">
-            <commerce jcr:primaryType="nt:unstructured">
-                <productlist jcr:primaryType="nt:unstructured">
-                    <v1 jcr:primaryType="nt:unstructured">
-                        <productlist jcr:primaryType="nt:unstructured">
-                            <default
-                                jcr:lastModified="{Date}2019-04-01T15:42:05.554+02:00"
-                                jcr:lastModifiedBy="admin"
-                                jcr:primaryType="nt:unstructured"
-                                jcr:title="Product List"
-                                sling:resourceType="wcm/core/components/policy/policy"
-                                showTitle="true">
-                                <jcr:content jcr:primaryType="nt:unstructured"/>
-                            </default>
-                        </productlist>
-                    </v1>
-                </productlist>
-            </commerce>
-        </components>
-    </venia>
 </jcr:root>
