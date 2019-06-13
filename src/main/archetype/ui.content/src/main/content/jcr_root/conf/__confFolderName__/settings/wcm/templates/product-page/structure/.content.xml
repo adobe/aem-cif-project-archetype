@@ -55,7 +55,7 @@
                     jcr:lastModified="{Date}2019-03-29T17:03:07.030+02:00"
                     jcr:lastModifiedBy="admin"
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="core/cif/components/commerce/product/v1/product"
+                    sling:resourceType="${appsFolderName}/components/commerce/product"
                     editable="{Boolean}true"/>
             </responsivegrid_167903988>
             <responsivegrid
