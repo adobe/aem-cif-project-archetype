@@ -25,10 +25,10 @@
                     jcr:primaryType="nt:unstructured"
                     navigationRoot="/content/${contentFolderName}/language-masters/en"
                     skipNavigationRoot="true"
-                    sling:resourceType="core/cif/components/structure/navigation/v1/navigation"
+                    sling:resourceType="${appsFolderName}/components/structure/navigation"
                     structureDepth="2"/>
                 <minicart jcr:primaryType="nt:unstructured"
-                          sling:resourceType="core/cif/components/commerce/minicart/v1/minicart"/>
+                          sling:resourceType="${appsFolderName}/components/commerce/minicart"/>
             </header>
             <responsivegrid
                 jcr:created="{Date}2018-10-17T10:18:24.968+02:00"
