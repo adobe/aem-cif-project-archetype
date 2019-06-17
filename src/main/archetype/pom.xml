@@ -556,6 +556,12 @@
                 <type>zip</type>
                 <version>${core.cif.components.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.adobe.commerce.cif</groupId>
+                <artifactId>core-cif-components-core</artifactId>
+                <type>jar</type>
+                <version>${core.cif.components.version}</version>
+            </dependency>
 
             <!-- Apache Sling Dependencies -->
             <dependency>
