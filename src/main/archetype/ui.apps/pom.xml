@@ -92,9 +92,8 @@
 
         <dependency>
             <groupId>com.adobe.commerce.cif</groupId>
-            <artifactId>core-cif-components-apps</artifactId>
+            <artifactId>core-cif-components-all</artifactId>
             <type>zip</type>
-            <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
         <dependency>

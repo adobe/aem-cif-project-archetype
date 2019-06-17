@@ -90,12 +90,6 @@
 
                         <embedded>
                             <groupId>com.adobe.commerce.cif</groupId>
-                            <artifactId>core-cif-components-core</artifactId>
-                            <filter>true</filter>
-                        </embedded>
-
-                        <embedded>
-                            <groupId>com.adobe.commerce.cif</groupId>
                             <artifactId>cif-connector-graphql</artifactId>
                             <filter>true</filter>
                         </embedded>
@@ -123,12 +117,6 @@
                             <filter>true</filter>
                         </subPackage>
 #end
-
-                        <subPackage>
-                            <groupId>com.adobe.commerce.cif</groupId>
-                            <artifactId>core-cif-components-apps</artifactId>
-                            <filter>true</filter>
-                        </subPackage>
                         <subPackage>
                             <groupId>com.adobe.commerce.cif</groupId>
                             <artifactId>cif-connector-content</artifactId>
@@ -137,6 +125,11 @@
                         <subPackage>
                             <groupId>com.adobe.commerce.cif</groupId>
                             <artifactId>cif-virtual-catalog-content</artifactId>
+                            <filter>true</filter>
+                        </subPackage>
+                        <subPackage>
+                            <groupId>com.adobe.commerce.cif</groupId>
+                            <artifactId>core-cif-components-all</artifactId>
                             <filter>true</filter>
                         </subPackage>
 
@@ -209,16 +202,8 @@
         <!-- CIF Core component dependencies -->
         <dependency>
             <groupId>com.adobe.commerce.cif</groupId>
-            <artifactId>core-cif-components-core</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.adobe.commerce.cif</groupId>
-            <artifactId>core-cif-components-apps</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <artifactId>core-cif-components-all</artifactId>
             <type>zip</type>
-            <scope>provided</scope>
         </dependency>
 
         <!-- CIF Connector dependencies -->
