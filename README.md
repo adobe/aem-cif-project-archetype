@@ -87,4 +87,11 @@ mvn archetype:generate \
 Side note: The profile "adobe-public" must be activated when using profiles like "autoInstallPackage" mentioned above.
 
 ## Demo Project
-For demo purposes, we generate a sample project for the latest commit to the `master` branch. You can download the project in the [release](https://github.com/adobe/aem-cif-project-archetype/releases/tag/latest) section.
+For demo purposes, we generate a sample store-front project for the latest commit on the `master` branch. You can download it in the [release](https://github.com/adobe/aem-cif-project-archetype/releases/tag/latest) section and directly install it on your AEM instance.
+
+The store-front requires an AEM dispatcher with forwarding rules specific to your Magento setup. Please follow the steps as described in the dispatcher [documentation](https://github.com/adobe/aem-core-cif-components/tree/master/dispatcher).
+
+For more information about how to configure the sample project, please refer to the CIF core components [wiki](https://github.com/adobe/aem-core-cif-components/wiki/configuration).
+
+
+

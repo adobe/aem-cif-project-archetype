@@ -81,19 +81,17 @@
         </dependency>
 
         <dependency>
+            <groupId>${groupId}</groupId>
+            <artifactId>${rootArtifactId}.ui.apps</artifactId>
+            <version>${version}</version>
+            <type>zip</type>
+        </dependency>
+
+        <dependency>
             <groupId>com.adobe.aem</groupId>
             <artifactId>uber-jar</artifactId>
             <classifier>apis</classifier>
         </dependency>
-
-#if ( $optionIncludeExamples == "y" )
-        <dependency>
-            <groupId>com.adobe.commerce.cif</groupId>
-            <artifactId>core-cif-components-content</artifactId>
-            <type>zip</type>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-#end
 
     </dependencies>
 </project>
