@@ -2,9 +2,9 @@
 <jcr:root xmlns:dam="http://www.day.com/dam/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="nt:file">
     <jcr:content
-        dam:folderThumbnailPaths="[/content/dam/${contentFolderName}/Shop_the_latest_image2.jpg,/content/dam/${contentFolderName}/landing_page_hero.jpg,/content/dam/${contentFolderName}/landing_page_image.jpg]"
+        dam:folderThumbnailPaths="[/content/dam/${contentFolderName}/landing_page_image4.png,/content/dam/${contentFolderName}/landing_page_image1.png,/content/dam/${contentFolderName}/shop_the_latest_image2.png]"
         jcr:primaryType="nt:unstructured"
         bgcolor="{Long}-1"
-        height="{Long}140"
-        width="{Long}240"/>
+        height="{Long}240"
+        width="{Long}280"/>
 </jcr:root>
