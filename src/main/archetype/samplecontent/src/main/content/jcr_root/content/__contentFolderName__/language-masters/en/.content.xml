@@ -25,9 +25,9 @@
                     jcr:lastModifiedBy="admin"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="${appsFolderName}/components/content/heroimage"
-                    fileReference="/content/dam/${contentFolderName}/landing_page_hero.jpg"
+                    fileReference="/content/dam/${contentFolderName}/landing_page_hero.png"
                     heading="All-new reference storefront"
-                    title="${siteName}"/> <!-- Add Hero Image to DAM folder -->
+                    title="${siteName}"/>
             </responsivegrid>
         </root>
     </jcr:content>
