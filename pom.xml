@@ -23,6 +23,7 @@
 
     <name>AEM CIF Project Archetype</name>
     <description>AEM CIF Project Archetype</description>
+    <url>https://github.com/adobe/aem-cif-project-archetype</url>
 
     <scm>
         <connection>scm:git:https://github.com/adobe/aem-cif-project-archetype.git</connection>
