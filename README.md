@@ -76,10 +76,14 @@ Then change to the directory in which you want to create the project and run:
 mvn archetype:generate \
     -DarchetypeGroupId=com.adobe.commerce.cif \
     -DarchetypeArtifactId=cif-project-archetype \
-    -DarchetypeVersion=1-SNAPSHOT
+    -DarchetypeVersion=x.y.z-SNAPSHOT
 ```
 
 Side note: The profile "adobe-public" must be activated when using profiles like "autoInstallPackage" mentioned above.
+
+## Releases to Maven Central
+
+Releases of this project are triggered by manually running `mvn release:prepare release:clean` on the `master` branch on the root folder of this repository. Once you choose the release and the next snapshot versions, this commits the change along with a release git tag like for example `cif-project-archetype-x.y.z`. Note that the commits are not automatically pushed to the git repository, so you have some time to check your changes and then manually push them. The push then triggers a dedicated `CircleCI` build that performs the deployment of the tagged artifact to Maven Central.
 
 ## Demo Project
 
