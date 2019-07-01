@@ -173,12 +173,12 @@ workflows:
   version: 2
   build:
     jobs:
-      - build-java-8
+      - build-java-8:
           filters:
             tags:
               only: /.*/
 
-      - build-java-11
+      - build-java-11:
           filters:
             tags:
               only: /.*/
