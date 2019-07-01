@@ -1,15 +1,15 @@
 # Sample AEM CIF project template
 
-This is a project template for AEM-based CIF applications. It is intended as a best-practice set of examples as well as a potential starting point to develop your own CIF-based commerce store.
+This is a project template for AEM-based CIF applications. It is intended as a best-practice set of examples as well as a potential starting point to develop your own CIF-based commerce store based on [CIF core components](https://github.com/adobe/aem-core-cif-components).
 
 ## Modules
 
 The main parts of the template are:
 
-* all: All-in-one package that contains additional dependencies like the CIF and WCM core components, GraphQL tooling and CIF connector.
-* core: Java bundle containing all core functionality like OSGi services, listeners or schedulers, as well as component-related Java code such as servlets or request filters.
-* ui.apps: contains the /apps (and /etc) parts of the project, ie. JavaScript and CSS clientlibs, components, templates and runmode specific configs.
-* ui.content: contains content using the components from the ui.apps
+- all: All-in-one package that contains additional dependencies like the CIF and WCM core components, GraphQL tooling and CIF connector.
+- core: Java bundle containing all core functionality like OSGi services, listeners or schedulers, as well as component-related Java code such as servlets or request filters.
+- ui.apps: contains the /apps (and /etc) parts of the project, ie. JavaScript and CSS clientlibs, components, templates and runmode specific configs.
+- ui.content: contains content using the components from the ui.apps
 
 ## How to build
 
