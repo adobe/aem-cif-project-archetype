@@ -22,7 +22,7 @@ commands:
         type: string
         default: "Venia Demo Store Project"
     steps:
-      - run: 
+      - run:
           name: Build All Package
           command: |
             ARCHETYPE_VERSION=$(< ~/version.txt)
@@ -77,7 +77,7 @@ commands:
             cd ..
             rm -rf aem-core-cif-components
 
-      - run: 
+      - run:
           name: Build Archetype
           command: |
             java -version
@@ -151,12 +151,38 @@ jobs:
 
       - deploy-all-package
 
+  release:
+    docker:
+      - image: circleci/openjdk:11-jdk-stretch
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "pom.xml" }}
+            - v1-dependencies-
+      - run:
+          name: Release
+          # Only performs a 'mvn deploy' after the 'mvn release:prepare' because circleCI
+          # already checks out the git tag like 'mvn release:perform' would do.
+          command: |
+            echo $GPG_PRIVATE_KEY | base64 --decode | gpg --batch --import
+            mvn -B -s /home/circleci/project/.circleci/settings.xml clean deploy -P release-sign-artifacts
+            rm -rf /home/circleci/.gnupg
+
 workflows:
   version: 2
   build:
     jobs:
-      - build-java-8
-      - build-java-11
+      - build-java-8:
+          filters:
+            tags:
+              only: /.*/
+
+      - build-java-11:
+          filters:
+            tags:
+              only: /.*/
+
       - deploy-sample-all:
           requires:
             - build-java-8
@@ -164,3 +190,13 @@ workflows:
           filters:
             branches:
               only: master
+
+      - release:
+          requires:
+            - build-java-8
+            - build-java-11
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^cif-project-archetype-\d+\.\d+\.\d+$/
