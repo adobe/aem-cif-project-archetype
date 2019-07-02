@@ -8,13 +8,13 @@ This project is based on [aem-project-archetype](https://github.com/adobe/aem-pr
 
 ## Provided Maven profiles
 
-The generated maven project support different deployment profiles when running the Maven install goal `mvn install` within the reactor.
+The generated maven project supports different deployment profiles when running the Maven install goal `mvn install` within the reactor.
 
 | Id                        | Description                                                                                                                                                                                                                                                   |
 | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| autoInstallBundle         | Install core bundle with the maven-sling-plugin to the felix console                                                                                                                                                                                          |
-| autoInstallPackage        | Install the ui.content and ui.apps content package with the content-package-maven-plugin to the package manager to default author instance on localhost, port 4502. Hostname and port can be changed with the aem.host and aem.port user defined properties.  |
-| autoInstallPackagePublish | Install the ui.content and ui.apps content package with the content-package-maven-plugin to the package manager to default publish instance on localhost, port 4503. Hostname and port can be changed with the aem.host and aem.port user defined properties. |
+| autoInstallBundle         | Install core bundle with the maven-sling-plugin to the Felix console                                                                                                                                                                                          |
+| autoInstallPackage        | Install the ui.content and ui.apps content package with the content-package-maven-plugin to the package manager to default author instance on localhost, port 4502. Hostname and port can be changed with the aem.host and aem.port user-defined properties.  |
+| autoInstallPackagePublish | Install the ui.content and ui.apps content package with the content-package-maven-plugin to the package manager to default publish instance on localhost, port 4503. Hostname and port can be changed with the aem.host and aem.port user-defined properties. |
 
 ## Usage
 
