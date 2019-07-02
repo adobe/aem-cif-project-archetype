@@ -24,10 +24,10 @@ To use a released version of this archetype use the following Maven command:
 mvn archetype:generate \
     -DarchetypeGroupId=com.adobe.commerce.cif \
     -DarchetypeArtifactId=cif-project-archetype \
-    -DarchetypeVersion=1-SNAPSHOT
+    -DarchetypeVersion=x.y.z
 ```
 
-Where `1-SNAPSHOT` is the archetype version number that you want to use (see archetype versions below).
+Where `x.y.z` is the archetype version number that you want to use (see archetype [versions](VERSIONS.md)).
 
 ### Available properties
 
