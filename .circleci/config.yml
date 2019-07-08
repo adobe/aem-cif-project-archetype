@@ -69,15 +69,6 @@ commands:
             - v1-dependencies-
 
       - run:
-          name: Checkout and build CIF Core Components
-          command: |
-            git clone https://github.com/adobe/aem-core-cif-components.git
-            cd aem-core-cif-components
-            mvn -B clean install
-            cd ..
-            rm -rf aem-core-cif-components
-
-      - run:
           name: Build Archetype
           command: |
             java -version
