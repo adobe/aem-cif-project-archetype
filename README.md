@@ -1,4 +1,6 @@
 [![CircleCI](https://circleci.com/gh/adobe/aem-cif-project-archetype.svg?style=svg)](https://circleci.com/gh/adobe/aem-cif-project-archetype)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.adobe.commerce.cif/cif-project-archetype/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.adobe.commerce.cif/cif-project-archetype)
+![GitHub](https://img.shields.io/github/license/adobe/aem-cif-project-archetype.svg)
 
 # CIF Project Archetype
 
