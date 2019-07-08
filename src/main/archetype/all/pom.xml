@@ -189,14 +189,10 @@
         <dependency>
             <groupId>com.adobe.commerce.cif</groupId>
             <artifactId>graphql-client</artifactId>
-            <version>1.0.0</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.adobe.commerce.cif</groupId>
             <artifactId>magento-graphql</artifactId>
-            <version>2.0.0-magento231</version>
-            <scope>provided</scope>
         </dependency>
 
         <!-- CIF Core component dependencies -->
@@ -210,28 +206,20 @@
         <dependency>
             <groupId>com.adobe.commerce.cif</groupId>
             <artifactId>cif-connector-graphql</artifactId>
-            <version>0.2.0</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.adobe.commerce.cif</groupId>
             <artifactId>cif-virtual-catalog</artifactId>
-            <version>0.1.0</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.adobe.commerce.cif</groupId>
             <artifactId>cif-connector-content</artifactId>
-            <version>0.1.1</version>
             <type>zip</type>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.adobe.commerce.cif</groupId>
             <artifactId>cif-virtual-catalog-content</artifactId>
-            <version>0.1.0</version>
             <type>zip</type>
-            <scope>provided</scope>
         </dependency>
 
         <!-- WCM Core component dependencies -->

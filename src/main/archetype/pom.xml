@@ -42,8 +42,7 @@
         <vault.user>admin</vault.user>
         <vault.password>admin</vault.password>
         <core.wcm.components.version>2.4.0</core.wcm.components.version>
-        <core.cif.components.version>0.1.0</core.cif.components.version>
-
+        <core.cif.components.version>0.2.0</core.cif.components.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
@@ -559,8 +558,41 @@
             <dependency>
                 <groupId>com.adobe.commerce.cif</groupId>
                 <artifactId>core-cif-components-core</artifactId>
-                <type>jar</type>
                 <version>${core.cif.components.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.adobe.commerce.cif</groupId>
+                <artifactId>graphql-client</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.adobe.commerce.cif</groupId>
+                <artifactId>magento-graphql</artifactId>
+                <version>3.0.0-magento232</version>
+            </dependency>
+
+            <!-- CIF Connector dependencies -->
+            <dependency>
+                <groupId>com.adobe.commerce.cif</groupId>
+                <artifactId>cif-connector-graphql</artifactId>
+                <version>0.3.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.adobe.commerce.cif</groupId>
+                <artifactId>cif-virtual-catalog</artifactId>
+                <version>0.1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.adobe.commerce.cif</groupId>
+                <artifactId>cif-connector-content</artifactId>
+                <type>zip</type>
+                <version>0.1.1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.adobe.commerce.cif</groupId>
+                <artifactId>cif-virtual-catalog-content</artifactId>
+                <type>zip</type>
+                <version>0.1.1</version>
             </dependency>
 
             <!-- Apache Sling Dependencies -->
