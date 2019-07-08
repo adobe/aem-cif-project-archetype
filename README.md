@@ -56,13 +56,16 @@ confirmation at the end is denied and the questionnaire gets repeated or by pass
 
 ### Requirements
 
-The latest version of the archetype has the following requirements
+The latest version of the AEM CIF Project Archetype, requires the below minimum system requirements:
 
-- Adobe Experience Manager 6.4 SP4 or higher
+| Archetype | AEM 6.4 | AEM 6.5 | Magento       | Java |
+| --------- | ------- | ------- | ------------- | ---- |
+| 0.2.0     | 6.4.4.0 | 6.5.0   | 2.3.1 / 2.3.2 | 1.8  |
+
 - Apache Maven (3.3.9 or newer)
 - Adobe Public Maven Repository in maven settings, see [Knowledge Base](https://helpx.adobe.com/experience-manager/kb/SetUpTheAdobeMavenRepository.html) article for details.
 
-For a list of supported AEM versions of previous archetype versions, see [historical supported AEM versions](VERSIONS.md).
+For a list of requirements for previous versions, see [Historical System Requirements](VERSIONS.md).
 
 ## Building
 
