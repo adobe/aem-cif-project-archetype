@@ -2,6 +2,7 @@
 .classpath
 .settings
 /target
+.DS_Store
 
 ### IntelliJ ###
 .idea/
