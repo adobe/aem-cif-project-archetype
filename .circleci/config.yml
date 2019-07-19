@@ -63,7 +63,7 @@ commands:
               -u ${CIRCLE_PROJECT_USERNAME} \
               -r ${CIRCLE_PROJECT_REPONAME} \
               -n "<< parameters.release-name >>" \
-              -b "<< parameters.release.body >>" \
+              -b "<< parameters.release-body >>" \
               -c ${CIRCLE_SHA1} \
               -prerelease \
               -delete ${RELEASE_VERSION} ${ALL_PACKAGE}
