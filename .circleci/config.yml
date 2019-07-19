@@ -21,6 +21,9 @@ commands:
       release-name:
         type: string
         default: "Venia Demo Store Project"
+      release-body:
+        type: string
+        default: "**This demo store project is based on the latest snapshot build of the CIF archetype.**"
     steps:
       - run:
           name: Build All Package
@@ -56,7 +59,14 @@ commands:
           name: Upload artifact to GitHub
           command: |
             ALL_PACKAGE=$(find ./venia-store -iname 'demo-store.all-*.zip')
-            ./ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -n "<< parameters.release-name >>" -c ${CIRCLE_SHA1} -prerelease -delete ${RELEASE_VERSION} ${ALL_PACKAGE}
+            ./ghr -t ${GITHUB_TOKEN} \
+              -u ${CIRCLE_PROJECT_USERNAME} \
+              -r ${CIRCLE_PROJECT_REPONAME} \
+              -n "<< parameters.release-name >>" \
+              -b "<< parameters.release.body >>" \
+              -c ${CIRCLE_SHA1} \
+              -prerelease \
+              -delete ${RELEASE_VERSION} ${ALL_PACKAGE}
 
   build-archetype:
     description: "Build and verify archetype"
@@ -178,9 +188,9 @@ workflows:
           requires:
             - build-java-8
             - build-java-11
-          filters:
-            branches:
-              only: master
+          #filters:
+          #  branches:
+          #    only: master
 
       - release:
           requires:
