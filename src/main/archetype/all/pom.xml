@@ -75,7 +75,7 @@
                             <groupId>${groupId}</groupId>
                             <artifactId>${rootArtifactId}.core</artifactId>
                             <filter>true</filter>
-                            <target>/apps/${rootArtifactId}/install</target>
+                            <target>/apps/${appsFolderName}/install</target>
                         </embedded>
 
                         <embedded>
