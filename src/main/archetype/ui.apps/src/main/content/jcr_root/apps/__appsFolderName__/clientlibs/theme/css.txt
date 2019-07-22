@@ -1,0 +1,4 @@
+#base=.
+common/common.css
+
+components/product/product.css
