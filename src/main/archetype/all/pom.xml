@@ -89,6 +89,7 @@
                             <filter>true</filter>
                         </embedded>
 
+#if ( $optionEmbedConnector == "y" )
                         <embedded>
                             <groupId>com.adobe.commerce.cif</groupId>
                             <artifactId>cif-connector-graphql</artifactId>
@@ -99,6 +100,7 @@
                             <artifactId>cif-virtual-catalog</artifactId>
                             <filter>true</filter>
                         </embedded>
+#end
                     </embeddeds>
                     <subPackages>
                         <subPackage>
@@ -118,6 +120,7 @@
                             <filter>true</filter>
                         </subPackage>
 #end
+#if ( $optionEmbedConnector == "y" )
                         <subPackage>
                             <groupId>com.adobe.commerce.cif</groupId>
                             <artifactId>cif-connector-content</artifactId>
@@ -128,6 +131,7 @@
                             <artifactId>cif-virtual-catalog-content</artifactId>
                             <filter>true</filter>
                         </subPackage>
+#end
                         <subPackage>
                             <groupId>com.adobe.commerce.cif</groupId>
                             <artifactId>core-cif-components-all</artifactId>

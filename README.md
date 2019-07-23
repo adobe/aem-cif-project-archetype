@@ -47,7 +47,8 @@ Where `x.y.z` is the archetype version number that you want to use (see archetyp
 | packageGroup          |         | Content Package Group name         |
 | siteName              |         | AEM site name                      |
 | optionAemVersion      | 6.5.0   | Target AEM version                 |
-| optionIncludeExamples | y       | Include Component Library examples |
+| optionIncludeExamples | y       | Include sample content package     |
+| optionEmbedConnector  | n       | Embed CIF connector in all package |
 
 Note: If the archetype is executed in interactive mode the first time properties with default values can't be changed (see
 [ARCHETYPE-308](https://issues.apache.org/jira/browse/ARCHETYPE-308) for more details). The value can be changed when the property
@@ -58,9 +59,9 @@ confirmation at the end is denied and the questionnaire gets repeated or by pass
 
 The latest version of the AEM CIF Project Archetype, requires the below minimum system requirements:
 
-| Archetype | AEM 6.4 | AEM 6.5 | Magento       | Java |
-| --------- | ------- | ------- | ------------- | ---- |
-| 0.2.0     | 6.4.4.0 | 6.5.0   | 2.3.1 / 2.3.2 | 1.8  |
+| Archetype | AEM 6.4 | AEM 6.5 | Magento       | CIF Connector | Java |
+| --------- | ------- | ------- | ------------- | ------------- | ---- |
+| 0.2.0     | 6.4.4.0 | 6.5.0   | 2.3.1 / 2.3.2 | 0.3.0         | 1.8  |
 
 - Apache Maven (3.3.9 or newer)
 - Adobe Public Maven Repository in maven settings, see [Knowledge Base](https://helpx.adobe.com/experience-manager/kb/SetUpTheAdobeMavenRepository.html) article for details.
