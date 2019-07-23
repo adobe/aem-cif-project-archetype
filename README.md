@@ -29,7 +29,9 @@ mvn archetype:generate \
     -DarchetypeVersion=x.y.z
 ```
 
-Where `x.y.z` is the archetype version number that you want to use (see archetype [versions](VERSIONS.md)).
+Where `x.y.z` is the archetype version number that you want to use (see archetype [versions](VERSIONS.md)). By default, generated projects depend on the [CIF connector](https://github.com/adobe/commerce-cif-connector). So make sure you have a compatible version (see [requirements](#requirements) below) installed on your AEM instance. 
+
+For on-prem installations only, we recommend to embed the CIF connector into your project. This can be achieved by generating a project using the `-DoptionEmbedConnector=y` option.
 
 ### Available properties
 
@@ -93,7 +95,7 @@ Releases of this project are triggered by manually running `mvn release:prepare 
 
 ## Demo Project
 
-For demo purposes, we generate a sample store-front project for the latest commit on the `master` branch. You can download it in the [release](https://github.com/adobe/aem-cif-project-archetype/releases/tag/latest) section and directly install it on your AEM instance.
+For demo purposes, we generate a sample store-front project for the latest commit on the `master` branch. The package includes all required dependencies including the [CIF connector](https://github.com/adobe/commerce-cif-connector). You can download it in the [release](https://github.com/adobe/aem-cif-project-archetype/releases/tag/latest) section and directly install it on your AEM instance.
 
 The store-front requires an AEM dispatcher with forwarding rules specific to your Magento setup. Please follow the steps as described in the dispatcher [documentation](https://github.com/adobe/aem-core-cif-components/tree/master/dispatcher).
 
