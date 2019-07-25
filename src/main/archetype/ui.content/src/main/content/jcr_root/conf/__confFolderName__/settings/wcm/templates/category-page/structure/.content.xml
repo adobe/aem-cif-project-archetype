@@ -41,6 +41,8 @@
                     structureDepth="2"/>
                 <minicart jcr:primaryType="nt:unstructured"
                           sling:resourceType="${appsFolderName}/components/commerce/minicart"/>
+                <searchbar jcr:primaryType="nt:unstructured"
+                           sling:resourceType="${appsFolderName}/components/commerce/searchbar"/>
             </header>
             <product-list-container
                 jcr:primaryType="nt:unstructured"
