@@ -29,7 +29,9 @@ mvn archetype:generate \
     -DarchetypeVersion=x.y.z
 ```
 
-Where `x.y.z` is the archetype version number that you want to use (see archetype [versions](VERSIONS.md)).
+Where `x.y.z` is the archetype version number that you want to use (see archetype [versions](VERSIONS.md)). By default, generated projects depend on the [CIF connector](https://github.com/adobe/commerce-cif-connector). So make sure you have a compatible version (see [requirements](#requirements) below) installed on your AEM instance. 
+
+For on-prem installations only, we recommend to embed the CIF connector into your project. This can be achieved by generating a project using the `-DoptionEmbedConnector=y` option.
 
 ### Available properties
 
@@ -47,7 +49,8 @@ Where `x.y.z` is the archetype version number that you want to use (see archetyp
 | packageGroup          |         | Content Package Group name         |
 | siteName              |         | AEM site name                      |
 | optionAemVersion      | 6.5.0   | Target AEM version                 |
-| optionIncludeExamples | y       | Include Component Library examples |
+| optionIncludeExamples | y       | Include sample content package     |
+| optionEmbedConnector  | n       | Embed CIF connector in all package |
 
 Note: If the archetype is executed in interactive mode the first time properties with default values can't be changed (see
 [ARCHETYPE-308](https://issues.apache.org/jira/browse/ARCHETYPE-308) for more details). The value can be changed when the property
@@ -58,9 +61,9 @@ confirmation at the end is denied and the questionnaire gets repeated or by pass
 
 The latest version of the AEM CIF Project Archetype, requires the below minimum system requirements:
 
-| Archetype | AEM 6.4 | AEM 6.5 | Magento       | Java |
-| --------- | ------- | ------- | ------------- | ---- |
-| 0.2.0     | 6.4.4.0 | 6.5.0   | 2.3.1 / 2.3.2 | 1.8  |
+| Archetype | AEM 6.4 | AEM 6.5 | Magento       | CIF Connector | Java |
+| --------- | ------- | ------- | ------------- | ------------- | ---- |
+| 0.2.0     | 6.4.4.0 | 6.5.0   | 2.3.1 / 2.3.2 | 0.3.0         | 1.8  |
 
 - Apache Maven (3.3.9 or newer)
 - Adobe Public Maven Repository in maven settings, see [Knowledge Base](https://helpx.adobe.com/experience-manager/kb/SetUpTheAdobeMavenRepository.html) article for details.
@@ -92,7 +95,7 @@ Releases of this project are triggered by manually running `mvn release:prepare 
 
 ## Demo Project
 
-For demo purposes, we generate a sample store-front project for the latest commit on the `master` branch. You can download it in the [release](https://github.com/adobe/aem-cif-project-archetype/releases/tag/latest) section and directly install it on your AEM instance.
+For demo purposes, we generate a sample store-front project for the latest commit on the `master` branch. The package includes all required dependencies including the [CIF connector](https://github.com/adobe/commerce-cif-connector). You can download it in the [release](https://github.com/adobe/aem-cif-project-archetype/releases/tag/latest) section and directly install it on your AEM instance.
 
 The store-front requires an AEM dispatcher with forwarding rules specific to your Magento setup. Please follow the steps as described in the dispatcher [documentation](https://github.com/adobe/aem-core-cif-components/tree/master/dispatcher).
 
