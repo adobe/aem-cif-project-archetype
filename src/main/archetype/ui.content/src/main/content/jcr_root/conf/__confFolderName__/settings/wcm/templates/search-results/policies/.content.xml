@@ -4,7 +4,7 @@
     <jcr:content
         cq:lastModified="{Date}2019-04-12T16:32:18.876+03:00"
         cq:lastModifiedBy="admin"
-        cq:policy="venia/components/structure/page/policy_1563867489589"
+        cq:policy="wcm/foundation/components/page/default"
         jcr:primaryType="nt:unstructured"
         sling:resourceType="wcm/core/components/policies/mappings">
         <root
