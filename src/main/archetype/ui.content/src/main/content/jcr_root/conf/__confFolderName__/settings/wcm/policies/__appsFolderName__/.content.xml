@@ -19,5 +19,29 @@
                 </v1>
             </productlist>
         </commerce>
+        <structure jcr:primaryType="nt:unstructured">
+            <page jcr:primaryType="nt:unstructured">
+                <policy_1563867489589
+                    jcr:lastModified="{Date}2019-07-23T09:43:09.251+02:00"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="${siteName} Page Policy"
+                    sling:resourceType="wcm/core/components/policy/policy"
+                    clientlibs="[wcm.foundation.components.page.responsive,venia.theme]">
+                    <jcr:content jcr:primaryType="nt:unstructured"/>
+                </policy_1563867489589>
+            </page>
+            <catalogpage jcr:primaryType="nt:unstructured">
+                <policy_1563867800557
+                    jcr:lastModified="{Date}2019-07-23T09:43:35.546+02:00"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="${siteName} Catalogpage Policy"
+                    sling:resourceType="wcm/core/components/policy/policy"
+                    clientlibs="[wcm.foundation.components.page.responsive,venia.theme]">
+                    <jcr:content jcr:primaryType="nt:unstructured"/>
+                </policy_1563867800557>
+            </catalogpage>
+        </structure>
     </components>
 </jcr:root>

@@ -85,6 +85,13 @@
             <defaultValue>y</defaultValue>
             <validationRegex>^(y|n)$</validationRegex>
         </requiredProperty>
+        <!--
+            Option to embed CIF Connector package in the generated all package.
+        -->
+        <requiredProperty key="optionEmbedConnector">
+            <defaultValue>n</defaultValue>
+            <validationRegex>^(y|n)$</validationRegex>
+        </requiredProperty>
     </requiredProperties>
 
     <modules>

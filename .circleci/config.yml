@@ -45,7 +45,8 @@ commands:
               -DpackageGroup="venia" \
               -DsiteName="Venia Demo Store" \
               -DoptionAemVersion=6.5.0 \
-              -DoptionIncludeExamples=y
+              -DoptionIncludeExamples=y \
+              -DoptionEmbedConnector=y
             cd demo-store
             mvn clean package
       - run:
