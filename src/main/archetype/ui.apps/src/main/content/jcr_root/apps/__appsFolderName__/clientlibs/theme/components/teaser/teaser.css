@@ -1,38 +1,38 @@
 .cmp-teaser {
-  position: relative;
+    position: relative;
 }
 
 .cmp-teaser .cmp-image__image {
-  max-width: 100%;
-  margin: 0 auto;
-  display: block;
+    max-width: 100%;
+    margin: 0 auto;
+    display: block;
 }
 
 .cmp-teaser .cmp-teaser__title, .cmp-teaser .cmp-teaser__description, .cmp-teaser .cmp-teaser__action-container {
-  position: absolute;
-  left: 10%;
-  display: block;
-  margin: 0;
-  color: #ffffff;
-  font-weight: 900;
-  text-shadow: 2px 4px 3px rgba(0,0,0,0.5);
+    position: absolute;
+    left: 10%;
+    display: block;
+    margin: 0;
+    color: #ffffff;
+    font-weight: 900;
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.5);
 }
 
 .cmp-teaser .cmp-teaser__title {
-  top: 25%;
-  text-transform: uppercase;
-  font-size: 30px;
+    top: 25%;
+    text-transform: uppercase;
+    font-size: 30px;
 }
 
 .cmp-teaser .cmp-teaser__description {
-  top: 35%;
-  font-size: 20px;
+    top: 35%;
+    font-size: 20px;
 }
 
 .cmp-teaser .cmp-teaser__action-container {
-  top: 50%;
-  font-size: 15px;
-  text-shadow: none;
+    top: 50%;
+    font-size: 15px;
+    text-shadow: none;
 }
 
 .cmp-teaser .cmp-teaser__action-link {
@@ -54,13 +54,13 @@
 }
 
 @media (max-width: 768px) {
-  .cmp-teaser .cmp-teaser__title {
-    font-size: 20px;
-  }
-  .cmp-teaser .cmp-teaser__description {
-    font-size: 15px;
-  }
-  .cmp-teaser .cmp-teaser__action-link {
-    font-size: 10px;
-  }
+    .cmp-teaser .cmp-teaser__title {
+        font-size: 20px;
+    }
+    .cmp-teaser .cmp-teaser__description {
+        font-size: 15px;
+    }
+    .cmp-teaser .cmp-teaser__action-link {
+        font-size: 10px;
+    }
 }
