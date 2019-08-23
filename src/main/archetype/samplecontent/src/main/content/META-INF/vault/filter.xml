@@ -2,4 +2,5 @@
 <workspaceFilter version="1.0">
     <filter root="/content/${contentFolderName}" mode="update"/>
     <filter root="/content/dam/${contentFolderName}" mode="update"/>
+    <filter root="/apps/${appsFolderName}/config" mode="update"/>
 </workspaceFilter>
