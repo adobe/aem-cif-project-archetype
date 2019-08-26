@@ -2,5 +2,6 @@
 <workspaceFilter version="1.0">
     <filter root="/apps/${appsFolderName}">
         <exclude pattern="/apps/${appsFolderName}/install" />
+        <exclude pattern="/apps/${appsFolderName}/config" />
     </filter>
 </workspaceFilter>
