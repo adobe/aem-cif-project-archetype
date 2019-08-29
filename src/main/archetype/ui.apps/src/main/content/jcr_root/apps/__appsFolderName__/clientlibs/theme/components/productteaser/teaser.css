@@ -1,4 +1,5 @@
 .item__root {
+    position: relative;
 }
 
 .blank-placeholder {
@@ -31,10 +32,45 @@
     width: 100%;
 }
 
-.item__name,
+.item__name {
+    position: absolute;
+    display: block;
+    top: 40%;
+    left: 20%;
+    text-transform: uppercase;
+    font-size: 22px;
+    color: #ffffff;
+    font-weight: 900;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.9);
+}
+
 .item__price {
-    font-size: 0.875rem;
-    line-height: 1rem;
-    margin: 0.5rem 0;
-    min-height: 1rem;
+    position: absolute;
+    display: block;
+    top: 45%;
+    left: 20%;
+    font-size: 18px;
+    color: #ffffff;
+    font-weight: 900;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.9);
+}
+
+@media (max-width: 768px) {
+    .item__name {
+        font-size: 15px;
+    }
+    .item__price {
+        top: 60%;
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 992px) {
+    .item__name {
+        font-size: 18px;
+    }
+    .item__price {
+        top: 60%;
+        font-size: 14px;
+    }
 }
