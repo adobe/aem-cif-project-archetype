@@ -11,16 +11,17 @@
   ~ governing permissions and limitations under the License.
   ~ 
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/-->
+#set( $symbol_dollar = '$' )
 <sly data-sly-use.heroImage="com.adobe.cq.commerce.core.components.models.HeroImage">
     <div class="${heroImage.classList} jumbotron"
          style="background-image: url('${(properties.fileReference || properties.fileName) ? heroImage.imageSrc : '' @ context='uri'}');">
         <div class="container cq-dd-image">
             <div class="venia-HeroImage-wrapper">
                 <p class="h3">${properties.heading}</p>
-                <strong class="venia-HeroImage-title h1">${properties.title || currentPage.title}</strong>
+                <strong class="venia-HeroImage-title h1">${symbol_dollar}{properties.title || currentPage.title}</strong>
 
-                <p data-sly-test="${properties.buttonLabel && properties.buttonLinkTo}">
-                    <a class="btn btn-primary btn-action" href="${properties.buttonLinkTo @ extension = 'html'}" role="button">${properties.buttonLabel}</a>
+                <p data-sly-test="${symbol_dollar}{properties.buttonLabel && properties.buttonLinkTo}">
+                    <a class="btn btn-primary btn-action" href="${symbol_dollar}{properties.buttonLinkTo @ extension = 'html'}" role="button">${properties.buttonLabel}</a>
                 </p>
             </div>
         </div>
