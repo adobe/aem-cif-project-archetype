@@ -3,5 +3,5 @@
     jcr:description="Hero image to display on page top"
     jcr:primaryType="cq:Component"
     jcr:title="Hero Image"
-    sling:resourceSuperType="core/cif/components/content/heroimage/v1/heroimage"
+    sling:resourceSuperType="core/wcm/components/image/v2/image"
     componentGroup="${componentGroupName}"/>
