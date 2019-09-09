@@ -61,14 +61,15 @@ confirmation at the end is denied and the questionnaire gets repeated or by pass
 
 The latest version of the AEM CIF Project Archetype, requires the below minimum system requirements:
 
-| Archetype | AEM 6.4 | AEM 6.5 | Magento       | CIF Connector | Java |
-| --------- | ------- | ------- | ------------- | ------------- | ---- |
-| 0.3.0     | 6.4.4.0 | 6.5.0   | 2.3.1 / 2.3.2 | 0.4.0         | 1.8  |
-| 0.2.0     | 6.4.4.0 | 6.5.0   | 2.3.1 / 2.3.2 | 0.3.0         | 1.8  |
+| Archetype | AEM 6.4 | AEM 6.5 | Magento           | CIF Connector | Java |
+| --------- | ------- | ------- | ----------------- | ------------- | ---- |
+| 0.4.0     | 6.4.4.0 | 6.5.0   | 2.3.2<sup>*</sup> | 0.5.0         | 1.8  |
+| 0.3.0     | 6.4.4.0 | 6.5.0   | 2.3.1 / 2.3.2     | 0.4.0         | 1.8  |
+| 0.2.0     | 6.4.4.0 | 6.5.0   | 2.3.1 / 2.3.2     | 0.3.0         | 1.8  |
 
 - Apache Maven (3.3.9 or newer)
 - Adobe Public Maven Repository in maven settings, see [Knowledge Base](https://helpx.adobe.com/experience-manager/kb/SetUpTheAdobeMavenRepository.html) article for details.
-
+- <sup>*</sup> additional Magento patches are requiered, see readme.md of [CIF core components](https://github.com/adobe/aem-core-cif-components)
 For a list of requirements for previous versions, see [Historical System Requirements](VERSIONS.md).
 
 ## Building
