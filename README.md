@@ -69,7 +69,8 @@ The latest version of the AEM CIF Project Archetype, requires the below minimum 
 
 - Apache Maven (3.3.9 or newer)
 - Adobe Public Maven Repository in maven settings, see [Knowledge Base](https://helpx.adobe.com/experience-manager/kb/SetUpTheAdobeMavenRepository.html) article for details.
-- <sup>*</sup>additional Magento patches are requiered, see readme.md of [CIF core components](https://github.com/adobe/aem-core-cif-components)
+
+<sup>*</sup> With version 0.4.0 we drop support for Magento 2.3.1 and only support 2.3.2. For version 2.3.2 we currently requiere the following 4 Magento GraphQL patches ([#758](https://github.com/magento/graphql-ce/issues/758), [#665](https://github.com/magento/graphql-ce/pull/665), [#666](https://github.com/magento/graphql-ce/pull/666), [#906](https://github.com/magento/graphql-ce/pull/906)) installed on the Magento instance. Most of them will be included in upcomming Magento 2.3.3. release.
 
 For a list of requirements for previous versions, see [Historical System Requirements](VERSIONS.md).
 
