@@ -4,19 +4,15 @@
     <components jcr:primaryType="nt:unstructured">
         <commerce jcr:primaryType="nt:unstructured">
             <productlist jcr:primaryType="nt:unstructured">
-                <v1 jcr:primaryType="nt:unstructured">
-                    <productlist jcr:primaryType="nt:unstructured">
-                        <default
-                            jcr:lastModified="{Date}2019-04-01T15:42:05.554+02:00"
-                            jcr:lastModifiedBy="admin"
-                            jcr:primaryType="nt:unstructured"
-                            jcr:title="AEM CIF Core Components Product List"
-                            sling:resourceType="wcm/core/components/policy/policy"
-                            showTitle="true">
-                            <jcr:content jcr:primaryType="nt:unstructured"/>
-                        </default>
-                    </productlist>
-                </v1>
+                <default
+                    jcr:lastModified="{Date}2019-04-01T15:42:05.554+02:00"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="AEM CIF Core Components Product List"
+                    sling:resourceType="wcm/core/components/policy/policy"
+                    showTitle="true">
+                    <jcr:content jcr:primaryType="nt:unstructured"/>
+                </default>
             </productlist>
         </commerce>
         <structure jcr:primaryType="nt:unstructured">
