@@ -28,8 +28,8 @@
                                 cq:policy="${confFolderName}/components/commerce/productlist/default"
                                 sling:resourceType="wcm/core/components/policies/mapping"/>
                         </commerce>
-                    </${confFolderName}>
-                </testing>
+                    </components>
+                </${confFolderName}>
             </responsivegrid>
         </root>
     </jcr:content>
