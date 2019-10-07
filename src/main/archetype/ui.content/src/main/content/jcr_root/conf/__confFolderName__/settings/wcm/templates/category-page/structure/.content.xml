@@ -39,8 +39,8 @@
                     skipNavigationRoot="true"
                     sling:resourceType="${appsFolderName}/components/structure/navigation"
                     structureDepth="2">
-                    <myaccount jcr:primaryType="nt:unstructured"
-                               sling:resourceType="${appsFolderName}/components/content/myaccount"/>
+                    <miniaccount jcr:primaryType="nt:unstructured"
+                               sling:resourceType="${appsFolderName}/components/content/miniaccount"/>
                 </navigation>
                 <minicart jcr:primaryType="nt:unstructured"
                           sling:resourceType="${appsFolderName}/components/commerce/minicart"/>

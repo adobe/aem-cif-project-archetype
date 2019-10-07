@@ -3,5 +3,5 @@
           xmlns:cq="http://www.day.com/jcr/cq/1.0"
           xmlns:jcr="http://www.jcp.org/jcr/1.0"
           jcr:primaryType="cq:Component"
-          sling:resourceSuperType="core/cif/components/content/myaccount/v1/myaccount">
+          sling:resourceSuperType="core/cif/components/content/miniaccount/v1/miniaccount">
 </jcr:root>
