@@ -25,7 +25,10 @@
                     navigationRoot="/content/${contentFolderName}/language-masters/en"
                     skipNavigationRoot="true"
                     sling:resourceType="${appsFolderName}/components/structure/navigation"
-                    structureDepth="2"/>
+                    structureDepth="2">
+                    <miniaccount jcr:primaryType="nt:unstructured"
+                               sling:resourceType="${appsFolderName}/components/content/miniaccount"/>
+                </navigation>
                 <minicart jcr:primaryType="nt:unstructured"
                           sling:resourceType="${appsFolderName}/components/commerce/minicart"/>
                 <searchbar jcr:primaryType="nt:unstructured"
