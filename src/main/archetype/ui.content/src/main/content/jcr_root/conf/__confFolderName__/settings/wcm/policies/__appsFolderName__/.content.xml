@@ -10,7 +10,8 @@
                     jcr:primaryType="nt:unstructured"
                     jcr:title="AEM CIF Core Components Product List"
                     sling:resourceType="wcm/core/components/policy/policy"
-                    showTitle="true">
+                    showTitle="true"
+                    showImage="true">
                     <jcr:content jcr:primaryType="nt:unstructured"/>
                 </default>
             </productlist>
