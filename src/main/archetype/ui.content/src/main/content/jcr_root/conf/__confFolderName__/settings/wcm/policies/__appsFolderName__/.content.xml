@@ -5,6 +5,7 @@
         <commerce jcr:primaryType="nt:unstructured">
             <productlist jcr:primaryType="nt:unstructured">
                 <default
+                    cq:styleDefaultClasses="category__style_grid"
                     jcr:lastModified="{Date}2019-04-01T15:42:05.554+02:00"
                     jcr:lastModifiedBy="admin"
                     jcr:primaryType="nt:unstructured"
