@@ -15,22 +15,67 @@
 'use strict';
 
 const ci = new (require('./ci.js'))();
+const fs = require('fs');
 
 ci.context();
 
+ci.stage('Install Archetype');
+ci.sh('mvn clean install');
 
-ci.sh('mvn help:evaluate -Dexpression=project.version -q -DforceStdout > version.txt');
+ci.stage('Generate Sample Project');
+const releaseVersion = ci.sh(`mvn help:evaluate -Dexpression=project.version -q -DforceStdout`, true).toString().trim();
+ci.sh('mkdir -p venia-store');
+ci.dir('venia-store', () => {
+    ci.sh(`mvn archetype:generate -B \
+        -DarchetypeGroupId="com.adobe.commerce.cif" \
+        -DarchetypeArtifactId="cif-project-archetype" \
+        -DarchetypeVersion=${releaseVersion} \
+        -DgroupId="com.adobe.commerce.cif" \
+        -DartifactId="cif-sample-project" \
+        -Dversion=${releaseVersion} \
+        -Dpackage="com.adobe.commerce.cif" \
+        -DappsFolderName="venia" \
+        -DartifactName="Venia Demo Store" \
+        -DcontentFolderName="venia" \
+        -DpackageGroup="venia" \
+        -DsiteName="Venia Demo Store" \
+        -DoptionAemVersion=6.5.0 \
+        -DoptionIncludeExamples=y \
+        -DoptionEmbedConnector=n`);
 
-// TODO: 
-// 1.  Perform release
+    ci.dir('cif-sample-project', () => {
+        ci.sh('mvn clean package');
+    });
+});
 
+ci.stage('Update Project');
+ci.dir('venia-store/cif-sample-project', () => {
+    // Add dispatcher module to pom.xml
+    let projectPom = fs.readFileSync('pom.xml', 'utf8');
+    projectPom = projectPom.replace('<module>samplecontent</module>', '<module>samplecontent</module>\n        <module>dispatcher</module>')
+    fs.writeFileSync('pom.xml', projectPom);
 
-// 2. In parallel:
-// Checkout tag and create sample project, use normal POM
-// Deploy to Github Release artifacts
+    // Change Magento root category id to 2
+    const productsPomPath = 'samplecontent/src/main/content/jcr_root/content/venia/us/en/products/.content.xml';
+    let productsContent = fs.readFileSync(productsPomPath, 'utf8');
+    productsContent = productsContent.replace('magentoRootCategoryId="4"', 'magentoRootCategoryId="2"');
+    fs.writeFileSync(productsPomPath, productsContent);
+});
 
-// 3. In parallel:
-// Checkout tag and create sample project, use normal POM
-// checkout cloudmanager repo
-// Make adaptions and copy generated project into cloudmanager folder
-// Git commit and push
+ci.stage('Deploy Project');
+const gitRemote = `https://${encodeURIComponent(ci.env('AMS_GIT_USER'))}:${encodeURIComponent(ci.env('AMS_GIT_PASS'))}@${ci.env('AMS_REPO').slice("https://".length)}`;
+ci.sh('mkdir -p ../ams');
+ci.dir('../ams', () => {
+    ci.sh(`git clone --depth 1 ${gitRemote}`);
+    ci.dir('aemcifdemo2', () => {
+        ci.sh('git checkout -b ci-test'); // TODO: This line is optional and for testing only
+        ci.sh('cp -R ../../repo/venia-store/cif-sample-project/* .');
+        ci.sh('git add -A');
+        ci.gitCredentials(gitRemote, () => {
+            ci.gitImpersonate(ci.env('AMS_GIT_USER'), ci.env('AMS_GIT_USER'), () => {
+                ci.sh(`git commit -m "CircleCI: Update to Archetype ${releaseVersion}"`);
+                ci.sh('git push -u origin ci-test');
+            });
+        });
+    });
+});
