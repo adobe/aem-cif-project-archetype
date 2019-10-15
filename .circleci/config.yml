@@ -85,6 +85,11 @@ jobs:
       MAVEN_OPTS: -Xmx3200m
 
     steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "pom.xml" }}
+            - v1-dependencies-
       - run:
           name: Deploy Sample Project
           command: node .circleci/ci/deploy-sample.js
@@ -99,6 +104,11 @@ jobs:
       MAVEN_OPTS: -Xmx3200m
 
     steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "pom.xml" }}
+            - v1-dependencies-
       - run:
           name: Deploy to AMS
           command: node .circleci/ci/deploy-ams.js
