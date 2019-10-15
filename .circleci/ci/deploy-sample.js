@@ -60,10 +60,4 @@ ci.sh(`./ghr -t ${ci.env('GITHUB_TOKEN')} \
     -u ${ci.env('CIRCLE_PROJECT_USERNAME')} \
     -r ${ci.env('CIRCLE_PROJECT_REPONAME')} \
     -c ${ci.env('CIRCLE_SHA1')} \
-    -replace latest ${allPackagePath}`);
-
-/* ci.sh(`./ghr -t ${ci.env('GITHUB_TOKEN')} \
-    -u ${ci.env('CIRCLE_PROJECT_USERNAME')} \
-    -r ${ci.env('CIRCLE_PROJECT_REPONAME')} \
-    -c ${ci.env('CIRCLE_SHA1')} \
-    -replace ${ci.env('CIRCLE_TAG')} ${allPackagePath}`); */
+    -replace ${ci.env('CIRCLE_TAG')} ${allPackagePath}`);

@@ -159,20 +159,12 @@ workflows:
 
       - deploy-sample:
           requires:
-            - build-java-8
-            - build-java-11
+            - release
           filters:
+            branches:
+              ignore: /.*/
             tags:
-              only: /.*/
-
-#      - deploy-sample:
-#          requires:
-#            - release
-#          filters:
-#            branches:
-#              ignore: /.*/
-#            tags:
-#              only: /^cif-project-archetype-\d+\.\d+\.\d+$/
+              only: /^cif-project-archetype-\d+\.\d+\.\d+$/
 
       - deploy-ams:
           requires:
