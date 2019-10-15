@@ -15,60 +15,6 @@
 version: 2.1
 
 commands:
-  deploy-all-package:
-    description: "Generate sample project from archetype and deploy all package to GitHub release"
-    parameters:
-      release-name:
-        type: string
-        default: "Venia Demo Store Project"
-      release-body:
-        type: string
-        default: "**This demo store project is based on the latest snapshot build of the CIF archetype.**"
-    steps:
-      - run:
-          name: Build All Package
-          command: |
-            ARCHETYPE_VERSION=$(< ~/version.txt)
-            mkdir -p venia-store
-            cd venia-store
-            mvn archetype:generate -B \
-              -DarchetypeGroupId="com.adobe.commerce.cif" \
-              -DarchetypeArtifactId="cif-project-archetype" \
-              -DarchetypeVersion=$ARCHETYPE_VERSION \
-              -DgroupId="com.venia.cif" \
-              -DartifactId="demo-store" \
-              -Dversion=${VENIA_STORE_VERSION} \
-              -Dpackage="com.venia.cif" \
-              -DappsFolderName="venia" \
-              -DartifactName="Venia Demo Store" \
-              -DcontentFolderName="venia" \
-              -DpackageGroup="venia" \
-              -DsiteName="Venia Demo Store" \
-              -DoptionAemVersion=6.5.0 \
-              -DoptionIncludeExamples=y \
-              -DoptionEmbedConnector=y
-            cd demo-store
-            mvn clean package
-      - run:
-          name: Install ghr
-          command: |
-            mkdir -p tmp
-            curl -L https://github.com/tcnksm/ghr/releases/download/v0.12.1/ghr_v0.12.1_linux_amd64.tar.gz | tar xvz -C ./tmp
-            mv tmp/**/ghr ./ghr
-            chmod +x ghr
-      - run:
-          name: Upload artifact to GitHub
-          command: |
-            ALL_PACKAGE=$(find ./venia-store -iname 'demo-store.all-*.zip')
-            ./ghr -t ${GITHUB_TOKEN} \
-              -u ${CIRCLE_PROJECT_USERNAME} \
-              -r ${CIRCLE_PROJECT_REPONAME} \
-              -n "<< parameters.release-name >>" \
-              -b "<< parameters.release-body >>" \
-              -c ${CIRCLE_SHA1} \
-              -prerelease \
-              -delete ${RELEASE_VERSION} ${ALL_PACKAGE}
-
   build-archetype:
     description: "Build and verify archetype"
     steps:
@@ -85,7 +31,6 @@ commands:
             java -version
             mvn -v
             mvn -B install
-            mvn help:evaluate -Dexpression=project.version -q -DforceStdout > ~/version.txt
 
       - save_cache:
           paths:
@@ -130,28 +75,33 @@ jobs:
     steps:
       - build-archetype
 
-      - persist_to_workspace:
-          root: ~/
-          paths:
-            - .m2/*
-            - version.txt
-
-  deploy-sample-all:
+  deploy-sample:
     docker:
-      - image: circleci/openjdk:11-jdk-stretch
+      - image: circleci/openjdk:11-jdk-stretch-node
 
     working_directory: ~/repo
 
     environment:
       MAVEN_OPTS: -Xmx3200m
-      RELEASE_VERSION: latest
-      VENIA_STORE_VERSION: 1.0.0
 
     steps:
-      - attach_workspace:
-          at: ~/
+      - run:
+          name: Deploy Sample Project
+          command: node .circleci/ci/deploy-sample.js
 
-      - deploy-all-package
+  deploy-ams:
+    docker:
+      - image: circleci/openjdk:11-jdk-stretch-node
+
+    working_directory: ~/repo
+
+    environment:
+      MAVEN_OPTS: -Xmx3200m
+
+    steps:
+      - run:
+          name: Deploy to AMS
+          command: node .circleci/ci/deploy-ams.js
 
   release:
     docker:
@@ -171,6 +121,8 @@ jobs:
             mvn -B -s /home/circleci/project/.circleci/settings.xml clean deploy -P release-sign-artifacts
             rm -rf /home/circleci/.gnupg
 
+
+
 workflows:
   version: 2
   build:
@@ -185,18 +137,36 @@ workflows:
             tags:
               only: /.*/
 
-      - deploy-sample-all:
+      - release:
           requires:
             - build-java-8
             - build-java-11
           filters:
             branches:
-              only: master
+              ignore: /.*/
+            tags:
+              only: /^cif-project-archetype-\d+\.\d+\.\d+$/
 
-      - release:
+      - deploy-sample:
           requires:
             - build-java-8
             - build-java-11
+          filters:
+            tags:
+              only: /.*/
+
+#      - deploy-sample:
+#          requires:
+#            - release
+#          filters:
+#            branches:
+#              ignore: /.*/
+#            tags:
+#              only: /^cif-project-archetype-\d+\.\d+\.\d+$/
+
+      - deploy-ams:
+          requires:
+            - release
           filters:
             branches:
               ignore: /.*/
