@@ -20,7 +20,8 @@ const fs = require('fs');
 ci.context();
 
 ci.stage('Install Archetype');
-ci.sh('mvn clean install');
+ci.sh('mvn -B clean install');
+
 
 ci.stage('Generate Sample Project');
 const releaseVersion = ci.sh(`mvn help:evaluate -Dexpression=project.version -q -DforceStdout`, true).toString().trim();
@@ -48,6 +49,7 @@ ci.dir('venia-store', () => {
     });
 });
 
+
 ci.stage('Update Project');
 ci.dir('venia-store/cif-sample-project', () => {
     // Add dispatcher module to pom.xml
@@ -62,11 +64,12 @@ ci.dir('venia-store/cif-sample-project', () => {
     fs.writeFileSync(productsPomPath, productsContent);
 });
 
+
 ci.stage('Deploy Project');
 const gitRemote = `https://${encodeURIComponent(ci.env('AMS_GIT_USER'))}:${encodeURIComponent(ci.env('AMS_GIT_PASS'))}@${ci.env('AMS_REPO').slice("https://".length)}`;
 ci.sh('mkdir -p ../ams');
 ci.dir('../ams', () => {
-    ci.sh(`git clone --depth 1 ${gitRemote}`);
+    ci.sh(`git clone --depth 1 ${gitRemote}`, false, false);
     ci.dir('aemcifdemo2', () => {
         ci.sh('git checkout -b ci-test'); // TODO: This line is optional and for testing only
         ci.sh('cp -R ../../repo/venia-store/cif-sample-project/* .');

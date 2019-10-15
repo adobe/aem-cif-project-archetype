@@ -26,7 +26,7 @@ module.exports = class CI {
         this.sh('java -version');
         this.sh('mvn -v');
         console.log("Node version: %s", process.version);
-        this.sh('printf "NPM version: $(npm --version)"');
+        this.sh('printf "NPM version: $(npm --version)"', false, false);
     };
 
     /**
@@ -54,8 +54,10 @@ module.exports = class CI {
     /**
      * Run shell command and attach to process stdio.
      */
-    sh(command, returnStdout = false) {
-        console.log(command);
+    sh(command, returnStdout = false, print = true) {
+        if (print) {
+            console.log(command);
+        }
         if (returnStdout) {
             return e.execSync(command).toString().trim();
         }
@@ -85,10 +87,10 @@ module.exports = class CI {
      */
     gitImpersonate(user, mail, func) {
         try {
-            this.sh('git config --local user.name ' + user + ' && git config --local user.email ' + mail)
+            this.sh('git config --local user.name ' + user + ' && git config --local user.email ' + mail, false, false);
             func()
         } finally {
-            this.sh('git config --local --unset user.name && git config --local --unset user.email')
+            this.sh('git config --local --unset user.name && git config --local --unset user.email', false, false);
         }
     };
 

@@ -22,6 +22,7 @@ ci.stage('Install Archetype');
 ci.sh('mvn clean install');
 const releaseVersion = ci.sh(`mvn help:evaluate -Dexpression=project.version -q -DforceStdout`, true).toString().trim();
 
+
 ci.stage('Generate Sample Project');
 ci.sh('mkdir -p venia-store');
 ci.dir('venia-store', () => {
@@ -43,9 +44,10 @@ ci.dir('venia-store', () => {
         -DoptionEmbedConnector=y`);
 
     ci.dir('demo-store', () => {
-        ci.sh('mvn clean package');
+        ci.sh('mvn -B clean package');
     });
 });
+
 
 ci.stage('Install GHR');
 ci.sh('mkdir -p tmp');
