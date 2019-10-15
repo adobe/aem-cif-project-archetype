@@ -4,7 +4,7 @@
 
 # CIF Project Archetype
 
-This archetype creates a minimal Adobe Experience Manager CIF project as a starting point for your own projects using [CIF core components](https://github.com/adobe/aem-core-cif-components). The properties that must be provided when using this archetype allow to name as desired all parts of this project.
+**This archetype creates a minimal Adobe Experience Manager CIF project as a starting point for your own projects using [CIF core components](https://github.com/adobe/aem-core-cif-components). The properties that must be provided when using this archetype allow to name as desired all parts of this project.**
 
 This project is based on [aem-project-archetype](https://github.com/adobe/aem-project-archetype).
 
