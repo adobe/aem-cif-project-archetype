@@ -71,13 +71,12 @@ ci.sh('mkdir -p ../ams');
 ci.dir('../ams', () => {
     ci.sh(`git clone --depth 1 ${gitRemote}`, false, false);
     ci.dir('aemcifdemo2', () => {
-        ci.sh('git checkout -b ci-test'); // TODO: This line is optional and for testing only
         ci.sh('cp -R ../../repo/venia-store/cif-sample-project/* .');
         ci.sh('git add -A');
         ci.gitCredentials(gitRemote, () => {
             ci.gitImpersonate(ci.env('AMS_GIT_USER'), ci.env('AMS_GIT_USER'), () => {
                 ci.sh(`git commit -m "CircleCI: Update to Archetype ${releaseVersion}"`);
-                ci.sh('git push -u origin ci-test');
+                ci.sh('git push');
             });
         });
     });

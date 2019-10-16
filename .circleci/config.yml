@@ -166,19 +166,11 @@ workflows:
             tags:
               only: /^cif-project-archetype-\d+\.\d+\.\d+$/
 
-#      - deploy-ams:
-#          requires:
-#            - release
-#          filters:
-#            branches:
-#              ignore: /.*/
-#            tags:
-#              only: /^cif-project-archetype-\d+\.\d+\.\d+$/
-
       - deploy-ams:
           requires:
-            - build-java-8
-            - build-java-11
+            - release
           filters:
+            branches:
+              ignore: /.*/
             tags:
-              only: /.*/
+              only: /^cif-project-archetype-\d+\.\d+\.\d+$/
