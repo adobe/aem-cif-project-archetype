@@ -5,6 +5,7 @@
         <commerce jcr:primaryType="nt:unstructured">
             <productlist jcr:primaryType="nt:unstructured">
                 <default
+                    cq:styleDefaultClasses="category__style_grid"
                     jcr:lastModified="{Date}2019-04-01T15:42:05.554+02:00"
                     jcr:lastModifiedBy="admin"
                     jcr:primaryType="nt:unstructured"
@@ -13,6 +14,24 @@
                     showTitle="true"
                     showImage="true">
                     <jcr:content jcr:primaryType="nt:unstructured"/>
+                    <cq:styleGroups jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:styleGroupLabel="Layout"
+                            jcr:primaryType="nt:unstructured">
+                            <cq:styles jcr:primaryType="nt:unstructured">
+                                <item0
+                                    jcr:primaryType="nt:unstructured"
+                                    cq:styleClasses="category__style_grid"
+                                    cq:styleId="1570700958199"
+                                    cq:styleLabel="Grid" />
+                                <item1
+                                    jcr:primaryType="nt:unstructured"
+                                    cq:styleClasses="category__style_list"
+                                    cq:styleId="1570700958900"
+                                    cq:styleLabel="List" />
+                            </cq:styles>
+                        </item0>
+                    </cq:styleGroups>
                 </default>
             </productlist>
         </commerce>

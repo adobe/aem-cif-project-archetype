@@ -64,7 +64,7 @@
     line-height: 1;
 }
 
-.gallery__items {
+.category__style_grid .gallery__items {
     display: grid;
     grid-area: items;
     grid-gap: 1rem;
@@ -72,10 +72,15 @@
     margin-bottom: 10px;
 }
 
+.category__style_list .gallery__items {
+    display: block;
+    margin-bottom: 10px;
+}
+
 @media (max-width: 640px) {
-    div .gallery__items {
-        grid-template-columns: repeat(2, 1fr);
-    }
+div .gallery__items {
+    grid-template-columns: repeat(2, 1fr);
+}
 }
 
 .category__root {
