@@ -41,7 +41,8 @@
         <vault.user>admin</vault.user>
         <vault.password>admin</vault.password>
         <core.wcm.components.version>2.5.0</core.wcm.components.version>
-        <core.cif.components.version>0.4.0</core.cif.components.version>
+        <core.cif.components.version>0.5.0</core.cif.components.version>
+        <cif.connector.version>0.6.0</cif.connector.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
@@ -574,24 +575,24 @@
             <dependency>
                 <groupId>com.adobe.commerce.cif</groupId>
                 <artifactId>cif-connector-graphql</artifactId>
-                <version>0.4.0</version>
+                <version>${cif.connector.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.adobe.commerce.cif</groupId>
                 <artifactId>cif-virtual-catalog</artifactId>
-                <version>0.2.0</version>
+                <version>${cif.connector.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.adobe.commerce.cif</groupId>
                 <artifactId>cif-connector-content</artifactId>
                 <type>zip</type>
-                <version>0.2.1</version>
+                <version>${cif.connector.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.adobe.commerce.cif</groupId>
                 <artifactId>cif-virtual-catalog-content</artifactId>
                 <type>zip</type>
-                <version>0.3.0</version>
+                <version>${cif.connector.version}</version>
             </dependency>
 
             <!-- Apache Sling Dependencies -->
