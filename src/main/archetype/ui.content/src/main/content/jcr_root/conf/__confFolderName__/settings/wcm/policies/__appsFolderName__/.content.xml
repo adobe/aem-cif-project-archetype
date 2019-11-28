@@ -54,7 +54,7 @@
                     jcr:primaryType="nt:unstructured"
                     jcr:title="${siteName} Catalogpage Policy"
                     sling:resourceType="wcm/core/components/policy/policy"
-                    clientlibs="[wcm.foundation.components.page.responsive,${appsFolderName}.theme]">
+                    clientlibs="[wcm.foundation.components.page.responsive,${appsFolderName}.theme,core.cif.components.react]">
                     <jcr:content jcr:primaryType="nt:unstructured"/>
                 </policy_1563867800557>
             </catalogpage>
