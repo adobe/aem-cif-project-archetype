@@ -59,7 +59,7 @@ ci.dir('venia-store/cif-sample-project', () => {
 
     // Update dispatcher module pom.xml
     let dispatcherPom = fs.readFileSync("dispatcher/pom.xml", "utf8");
-    let versionRegEx = new RegExp("<version>\\d\\.\\d\\.\\d</version>");
+    let versionRegEx = new RegExp("<version>\\d+\\.\\d+\\.\\d+</version>");
     dispatcherPom = dispatcherPom.replace(versionRegEx, `<version>${releaseVersion}</version>`);
     fs.writeFileSync("dispatcher/pom.xml", dispatcherPom);
 
