@@ -11,7 +11,6 @@
   ~ governing permissions and limitations under the License.
   ~ 
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/-->
-#set( $symbol_dollar = '$' )
 <sly data-sly-use.heroImage="com.adobe.cq.commerce.core.components.models.HeroImage">
     <div class="${heroImage.classList} jumbotron"
          style="background-image: url('${(properties.fileReference || properties.fileName) ? heroImage.imageSrc : '' @ context='uri'}');">
