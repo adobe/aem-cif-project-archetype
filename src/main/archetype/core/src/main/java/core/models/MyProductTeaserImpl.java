@@ -35,6 +35,8 @@ public class MyProductTeaserImpl implements MyProductTeaser {
 
     protected static final String RESOURCE_TYPE = "venia/components/commerce/productteaser";
 
+    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
     @Self
     @Via(type = ResourceSuperType.class)
     private ProductTeaser productTeaser;
@@ -44,40 +46,36 @@ public class MyProductTeaserImpl implements MyProductTeaser {
 
     private AbstractProductRetriever productRetriever;
 
-    private Boolean showBadge = false;
-
     @PostConstruct
     public void initModel() {
         productRetriever = productTeaser.getProductRetriever();
-
-        boolean showBadgeProp = properties.get("badge", false);
-        int maxAgeProp = properties.get("age", 0);
 
         if (productRetriever != null) {
             // Pass your custom partial query to the ProductRetriever. This class will
             // automatically take care of executing your query as soon
             // as you try to access any product property.
             productRetriever.extendProductQueryWith(p -> p.createdAt());
-
-            // Custom code to calc the date difference of the product creation
-            // compared to today
-            if (showBadgeProp) {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-                LocalDate createdAt = LocalDate.parse(productRetriever.fetchProduct().getCreatedAt(), formatter);
-                if (createdAt != null) {
-                    Period period = Period.between(createdAt, LocalDate.now());
-                    int age = period.getDays();
-                    if (age < maxAgeProp) {
-                        showBadge = true;
-                    }
-                }
-            }
         }
     }
 
     @Override
     public Boolean isShowBadge() {
-        return showBadge;
+        final boolean showBadge = properties.get("badge", false);
+        if (showBadge) {
+            final int maxAgeProp = properties.get("age", 0);
+
+            // Custom code to calc the date difference of the product creation
+            // compared to today
+            final LocalDate createdAt = LocalDate.parse(productRetriever.fetchProduct().getCreatedAt(), formatter);
+            if (createdAt != null) {
+                final Period period = Period.between(createdAt, LocalDate.now());
+                final int age = period.getDays();
+                if (age < maxAgeProp) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     @Override
