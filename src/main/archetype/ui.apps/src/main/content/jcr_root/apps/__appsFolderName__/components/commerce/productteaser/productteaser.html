@@ -1,0 +1,47 @@
+<!--/*
+    Copyright 2019 Adobe Systems Incorporated
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+*/-->
+
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html"
+    data-sly-use.product="${package}.core.models.MyProductTeaser">
+    <sly data-sly-test.ispropavailable="${symbol_dollar}{properties.selection}">
+        <div data-sly-test.isvalid="${symbol_dollar}{product.url}" class="item__root">
+            <div data-sly-test="${symbol_dollar}{product.showBadge}" class="item__badge">
+                <span>${symbol_dollar}{properties.text || 'New'}</span>
+            </div>
+            <a class="item__images" href=${symbol_dollar}{product.url}>
+                <img class="item__image" width="100%" height="100%" src="${symbol_dollar}{product.image}" alt="${symbol_dollar}{product.image}" />
+            </a>
+            <a class="item__name" href=${symbol_dollar}{product.url}><span>${symbol_dollar}{product.name}</span></a>
+            <div class="item__price">
+                <span> ${symbol_dollar}{product.formattedPrice} </span>
+            </div>
+        </div>
+        <!-- Condition if the product is not available, or invalid sku provided -->
+        <div class="blank-placeholder" data-sly-test=${symbol_dollar}{!isvalid}>
+            <strong>${symbol_dollar}{'Product Teaser' @ i18n} <br> ${symbol_dollar}{'Incorrect Configuration. Select a Magento Product.' @
+                i18n}</strong>
+        </div>
+    </sly>
+    <!-- Condition for no product configured and no property value available-->
+    <div data-sly-test=${symbol_dollar}{!ispropavailable} class="blank-placeholder">
+        <strong>${symbol_dollar}{'Product Teaser' @ i18n}</strong><br>
+        <p>${symbol_dollar}{'Configuration options' @ i18n}: </p>
+        <p> 1.${symbol_dollar}{'Use dialog to choose Magento Products' @ i18n} </p>
+        <p> 2.${symbol_dollar}{'Drag and drop a Magento product from assets sidebar at this area' @ i18n} </p>
+        <p> 3.${symbol_dollar}{'You can also drag and drop Magento product from sidebar direclty in parsys and it will render the
+            teaser' @ i18n} </p>
+    </div>
+</sly>
