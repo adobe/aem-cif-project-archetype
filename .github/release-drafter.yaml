@@ -1,0 +1,28 @@
+name-template: "CIF Project Archetype $NEXT_MINOR_VERSION"
+categories:
+  - title: "Features & Enhancements"
+    labels:
+      - "feature"
+      - "enhancement"
+  - title: "Bug Fixes"
+    labels:
+      - "fix"
+      - "bugfix"
+      - "bug"
+exclude-labels:
+  - "releng"
+template: |
+  ## Changes
+  This release introduces the following new features and bug fixes:
+
+  $CHANGES
+
+  For a list containing all the fixed issues see [all the change details](https://github.com/adobe/aem-cif-project-archetype/compare/$PREVIOUS_TAG...cif-project-archetype-$NEXT_MINOR_VERSION).
+
+  | Artifact | Version |
+  | ------- | -------|
+  | [WCM Core Components](https://github.com/adobe/aem-core-wcm-components) | x.y.z |
+  | [CIF Core Components](https://github.com/adobe/aem-core-cif-components) | x.y.z |
+  | [CIF Connector](https://github.com/adobe/commerce-cif-connector) | x.y.z |
+
+  Projects generated with the archetype will work on AEM 6.5.0.0 or AEM 6.4.2.0.
