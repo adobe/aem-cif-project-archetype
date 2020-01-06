@@ -2,13 +2,12 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
     jcr:primaryType="cq:Page">
     <jcr:content
+        cq:allowedTemplates="[/conf/${confFolderName}/settings/wcm/templates/landing-page]"
         cq:graphqlClient="default"
-        cq:lastModified="{Date}2019-04-17T12:05:17.396+02:00"
-        cq:lastModifiedBy="admin"
         cq:redirectTarget="/content/${contentFolderName}/us/en"
-        cq:template="/conf/${confFolderName}/settings/wcm/templates/content-page"
+        cq:template="/conf/${confFolderName}/settings/wcm/templates/root-page"
         jcr:primaryType="cq:PageContent"
         jcr:title="United States"
-        sling:resourceType="${appsFolderName}/components/structure/page"/>
+        sling:resourceType="${appsFolderName}/components/structure/rootpage"/>
     <en/>
 </jcr:root>
