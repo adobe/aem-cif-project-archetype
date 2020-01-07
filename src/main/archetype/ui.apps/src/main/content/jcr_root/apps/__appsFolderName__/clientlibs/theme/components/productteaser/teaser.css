@@ -101,6 +101,11 @@
     transform: rotate(45deg);
 }
 
+.productteaser .productteaser__cta {
+    text-align: center;
+    padding: 10px 0 10px 0;
+}
+
 @media (max-width: 768px) {
     .productteaser .item__name {
         font-size: 15px;
