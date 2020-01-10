@@ -4,4 +4,5 @@
     jcr:primaryType="cq:Component"
     jcr:title="Product List"
     sling:resourceSuperType="core/cif/components/commerce/productlist/v1/productlist"
-    componentGroup="${componentGroupName}"/>
+    componentGroup="${componentGroupName}"
+    cq:isContainer="true"/>
