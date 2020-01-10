@@ -16,7 +16,7 @@
 <div class="container">
     <sly data-sly-use.templatedContainer="com.day.cq.wcm.foundation.TemplatedContainer"
          data-sly-repeat.child="${templatedContainer.structureResources}"
-         data-sly-resource="${child.path @ resourceType=child.resourceType, decorationTagName='div'}"></sly>
+         data-sly-resource="${symbol_dollar}{child.path @ resourceType=child.resourceType, decorationTagName='div'}"></sly>
 </div>
-<sly data-sly-resource="${'cloudservices' @ resourceType='cq/cloudserviceconfigs/components/servicecomponents'}"></sly>
+<sly data-sly-resource="${symbol_dollar}{'cloudservices' @ resourceType='cq/cloudserviceconfigs/components/servicecomponents'}"></sly>
 <sly data-sly-include="footerlibs.html"></sly>
