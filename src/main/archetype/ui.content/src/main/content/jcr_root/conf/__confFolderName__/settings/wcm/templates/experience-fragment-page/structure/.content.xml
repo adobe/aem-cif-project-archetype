@@ -5,9 +5,9 @@
         cq:deviceGroups="[mobile/groups/responsive]"
         cq:lastModified="{Date}2018-10-17T10:18:24.970+02:00"
         cq:lastModifiedBy="admin"
-        cq:template="/conf/venia/settings/wcm/templates/experience-fragment-venia-demo-store"
+        cq:template="/conf/${confFolderName}/settings/wcm/templates/experience-fragment-venia-demo-store"
         jcr:primaryType="cq:PageContent"
-        sling:resourceType="venia/components/structure/page">
+        sling:resourceType="${appsFolderName}/components/structure/page">
         <root
             jcr:primaryType="nt:unstructured"
             sling:resourceType="wcm/foundation/components/responsivegrid"

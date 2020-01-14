@@ -5,4 +5,4 @@
     jcr:primaryType="cq:Component"
     jcr:title="Experience Fragment"
     sling:resourceSuperType="core/wcm/components/experiencefragment/v1/experiencefragment"
-    componentGroup="venia"/>
+    componentGroup="${componentGroupName}"/>
