@@ -4,7 +4,7 @@
     <jcr:content
         cq:lastModified="{Date}2020-01-10T13:53:38.591+02:00"
         cq:lastModifiedBy="admin"
-        cq:template="/conf/${confFolderName}/settings/wcm/templates/experience-fragment-venia-demo-store"
+        cq:template="/conf/${confFolderName}/settings/wcm/templates/experience-fragment-page"
         jcr:primaryType="cq:PageContent"
         sling:resourceType="${appsFolderName}/components/structure/xfpage"
         cq:xfVariantType="web">

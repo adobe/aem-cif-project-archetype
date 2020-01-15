@@ -61,7 +61,7 @@
                                     assetGroup="content"
                                     assetMimetype="text/html"
                                     droptarget="experiencefragment"
-                                        resourceType="${appsFolderName}/components/content/experiencefragment"
+                                    resourceType="${appsFolderName}/components/content/experiencefragment"
                                     type="experiencefragment"/>
                                 <image
                                     jcr:primaryType="nt:unstructured"
