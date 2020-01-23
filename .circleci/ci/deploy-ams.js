@@ -57,12 +57,6 @@ ci.dir('venia-store/cif-sample-project', () => {
     projectPom = projectPom.replace('<module>samplecontent</module>', '<module>samplecontent</module>\n        <module>dispatcher</module>')
     fs.writeFileSync('pom.xml', projectPom);
 
-    // Update dispatcher module pom.xml
-    let dispatcherPom = fs.readFileSync("dispatcher/pom.xml", "utf8");
-    let versionRegEx = new RegExp("<version>\\d+\\.\\d+\\.\\d+</version>");
-    dispatcherPom = dispatcherPom.replace(versionRegEx, `<version>${releaseVersion}</version>`);
-    fs.writeFileSync("dispatcher/pom.xml", dispatcherPom);
-
     // Change Magento root category id to 2
     const productsPomPath = 'samplecontent/src/main/content/jcr_root/content/venia/us/en/products/.content.xml';
     let productsContent = fs.readFileSync(productsPomPath, 'utf8');
@@ -78,6 +72,14 @@ ci.dir('../ams', () => {
     ci.sh(`git clone --depth 1 ${gitRemote}`, false, false);
     ci.dir('aemcifdemo2', () => {
         ci.sh('cp -R ../../repo/venia-store/cif-sample-project/* .');
+        
+        // Update dispatcher module pom.xml
+        let dispatcherPom = fs.readFileSync("dispatcher/pom.xml", "utf8");
+        let versionRegEx = new RegExp("<version>\\d+\\.\\d+\\.\\d+</version>");
+        dispatcherPom = dispatcherPom.replace(versionRegEx, `<version>${releaseVersion}</version>`);
+        fs.writeFileSync("dispatcher/pom.xml", dispatcherPom);
+        
+        // Add the changes, commit, and push
         ci.sh('git add -A');
         ci.gitCredentials(gitRemote, () => {
             ci.gitImpersonate(ci.env('AMS_GIT_USER'), ci.env('AMS_GIT_USER'), () => {
