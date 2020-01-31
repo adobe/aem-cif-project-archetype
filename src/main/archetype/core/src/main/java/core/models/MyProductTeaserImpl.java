@@ -99,6 +99,16 @@ public class MyProductTeaserImpl implements MyProductTeaser {
     }
 
     @Override
+    public String getSku() {
+        return productTeaser.getSku();
+    }
+
+    @Override
+    public String getCallToAction() {
+        return productTeaser.getCallToAction();
+    }
+
+    @Override
     public AbstractProductRetriever getProductRetriever() {
         return productRetriever;
     }
