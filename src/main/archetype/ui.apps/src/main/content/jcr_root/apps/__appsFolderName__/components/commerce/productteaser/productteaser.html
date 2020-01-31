@@ -15,9 +15,11 @@
 */-->
 
 <sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html"
-    data-sly-use.product="${package}.core.models.MyProductTeaser">
+    data-sly-use.product="${package}.core.models.MyProductTeaser"
+    data-sly-use.actionsTpl="actions.html">
+    <sly data-sly-call="${symbol_dollar}{clientlib.all @ categories='core.cif.components.productteaser.v1'}"></sly>
     <sly data-sly-test.ispropavailable="${symbol_dollar}{properties.selection}">
-        <div data-sly-test.isvalid="${symbol_dollar}{product.url}" class="item__root">
+        <div data-sly-test.isvalid="${symbol_dollar}{product.url}" class="item__root" data-cmp-is="productteaser">
             <div data-sly-test="${symbol_dollar}{product.showBadge}" class="item__badge">
                 <span>${symbol_dollar}{properties.text || 'New'}</span>
             </div>
@@ -28,14 +30,15 @@
             <div class="item__price">
                 <span> ${symbol_dollar}{product.formattedPrice} </span>
             </div>
+            <sly data-sly-call="${symbol_dollar}{actionsTpl.actions @ product=product}"></sly>
         </div>
-        <!-- Condition if the product is not available, or invalid sku provided -->
+        <!--/* Condition if the product is not available, or invalid sku provided */-->
         <div class="blank-placeholder" data-sly-test=${symbol_dollar}{!isvalid}>
             <strong>${symbol_dollar}{'Product Teaser' @ i18n} <br> ${symbol_dollar}{'Incorrect Configuration. Select a Magento Product.' @
                 i18n}</strong>
         </div>
     </sly>
-    <!-- Condition for no product configured and no property value available-->
+    <!--/* Condition for no product configured and no property value available */-->
     <div data-sly-test=${symbol_dollar}{!ispropavailable} class="blank-placeholder">
         <strong>${symbol_dollar}{'Product Teaser' @ i18n}</strong><br>
         <p>${symbol_dollar}{'Configuration options' @ i18n}: </p>
