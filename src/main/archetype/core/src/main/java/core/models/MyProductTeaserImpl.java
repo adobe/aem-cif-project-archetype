@@ -33,7 +33,7 @@ import org.apache.sling.models.annotations.via.ResourceSuperType;
 @Model(adaptables = SlingHttpServletRequest.class, adapters = MyProductTeaser.class, resourceType = MyProductTeaserImpl.RESOURCE_TYPE)
 public class MyProductTeaserImpl implements MyProductTeaser {
 
-    protected static final String RESOURCE_TYPE = "venia/components/commerce/productteaser";
+    protected static final String RESOURCE_TYPE = "${appsFolderName}/components/commerce/productteaser";
 
     private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
