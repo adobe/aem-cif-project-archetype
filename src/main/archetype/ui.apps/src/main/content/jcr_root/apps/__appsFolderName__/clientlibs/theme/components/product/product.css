@@ -444,6 +444,23 @@
 
 .productFullDetail__productPrice {
     display: block;
+    text-align: right;
+}
+
+.productFullDetail__productPrice .regularPrice {
+    text-decoration: line-through;
+    font-size: 0.8rem;
+}
+
+.productFullDetail__productPrice .discountedPrice {
+    font-weight: bold;
+    color: rgb(var(--venia-teal));
+    font-size: 1.2rem;
+}
+
+.productFullDetail__productPrice .you-save {
+    font-size: 0.9rem;
+    color: rgb(var(--venia-text-alt));
 }
 
 .productFullDetail__imageCarousel {
