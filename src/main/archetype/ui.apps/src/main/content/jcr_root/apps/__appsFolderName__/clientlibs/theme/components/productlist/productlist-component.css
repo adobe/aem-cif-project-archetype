@@ -30,6 +30,17 @@
     min-height: 1rem;
 }
 
+.item__price .regularPrice {
+    text-decoration: line-through;
+    font-size: 0.8rem;
+}
+
+.item__price .discountedPrice {
+    font-weight: bold;
+    color: rgb(var(--venia-teal));
+    font-size: 1.2rem;
+}
+
 /* state: pending */
 
 .item__root_pending {
