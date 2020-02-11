@@ -442,25 +442,30 @@
     }
 }
 
-.productFullDetail__productPrice {
+.productFullDetail__root .price {
     display: block;
     text-align: right;
 }
 
-.productFullDetail__productPrice .regularPrice {
+.productFullDetail__root .price .regularPrice {
     text-decoration: line-through;
     font-size: 0.8rem;
 }
 
-.productFullDetail__productPrice .discountedPrice {
+.productFullDetail__root .price .discountedPrice {
     font-weight: bold;
     color: rgb(var(--venia-teal));
     font-size: 1.2rem;
 }
 
-.productFullDetail__productPrice .you-save {
+.productFullDetail__root .price .you-save {
     font-size: 0.9rem;
     color: rgb(var(--venia-text-alt));
+}
+
+.productFullDetail__root .price .you-save:before { 
+    display: block;
+    content: ' ';
 }
 
 .productFullDetail__imageCarousel {
