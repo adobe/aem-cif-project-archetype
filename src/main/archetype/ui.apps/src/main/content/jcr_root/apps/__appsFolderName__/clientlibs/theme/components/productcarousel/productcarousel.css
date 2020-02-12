@@ -12,8 +12,21 @@
     color: #333;
 }
 
-.product__price {
-    font-size: 15px;
+.productcarousel__root .price {
+    font-size: 0.875rem;
+    line-height: 1rem;
+    margin: 0.5rem 0;
+    min-height: 1rem;
+}
+.productcarousel__root .price .regularPrice {
+    text-decoration: line-through;
+    font-size: 0.8rem;
+}
+
+.productcarousel__root .price .discountedPrice {
+    font-weight: bold;
+    color: rgb(var(--venia-teal));
+    font-size: 1.2rem;
 }
 
 .product__image {
