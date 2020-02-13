@@ -14,7 +14,7 @@
 package ${package}.core.models;
 
 import java.time.LocalDate;
-import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.time.format.DateTimeFormatter;
 
 import javax.annotation.PostConstruct;
@@ -68,8 +68,7 @@ public class MyProductTeaserImpl implements MyProductTeaser {
             // compared to today
             final LocalDate createdAt = LocalDate.parse(productRetriever.fetchProduct().getCreatedAt(), formatter);
             if (createdAt != null) {
-                final Period period = Period.between(createdAt, LocalDate.now());
-                final int age = period.getDays();
+                final long age = ChronoUnit.DAYS.between(createdAt, LocalDate.now());
                 if (age < maxAgeProp) {
                     return true;
                 }
