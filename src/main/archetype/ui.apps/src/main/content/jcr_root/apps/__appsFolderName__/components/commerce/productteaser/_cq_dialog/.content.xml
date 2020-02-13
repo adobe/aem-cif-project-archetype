@@ -36,8 +36,7 @@
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/numberfield" 
                                                 fieldDescription="The maximum age in days the 'new' badge should be shown" 
                                                 fieldLabel="Max Product Age" 
-                                                name="./age" 
-                                                max="{Long}30" 
+                                                name="./age"
                                                 min="{Long}0" 
                                                 value="10" />
                                             <ageTypeHint jcr:primaryType="nt:unstructured" 
