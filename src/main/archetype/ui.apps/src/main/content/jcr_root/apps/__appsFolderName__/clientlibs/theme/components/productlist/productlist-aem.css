@@ -1,6 +1,6 @@
 .category__pagination_root {
     display: grid;
-    grid-auto-columns: 1.75rem;
+    grid-auto-columns: 2.75rem;
     grid-template-rows: 1fr;
     grid-column-gap: 0.25rem;
     justify-content: center;
@@ -26,12 +26,7 @@
 }
 
 .category__pagination_tilebutton-text {
-    position: absolute;
-    width: 1.75rem;
-    height: 1.75rem;
     border: 0px;
-    bottom: 0.75rem;
-    /*margin-bottom: 2px;*/
 }
 
 .category__pagination_icon-root {
@@ -42,14 +37,8 @@
 }
 
 .category__pagination_tilebutton-marker {
-    position: absolute;
-    width: 1.75rem;
-    height: 1.75rem;
     border: 1px solid;
     border-radius: 2px;
-    bottom: 0.75rem;
-    margin-bottom: 2px;
-    padding-top: 2px;
 }
 
 .category__pagination_button {
