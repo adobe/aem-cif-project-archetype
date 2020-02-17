@@ -45,7 +45,7 @@
     text-shadow: 2px 2px 4px rgba(0,0,0,0.9);
 }
 
-.productteaser .item__price {
+.productteaser .price {
     position: absolute;
     display: block;
     top: 45%;
@@ -54,6 +54,17 @@
     color: #ffffff;
     font-weight: 900;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.9);
+}
+
+.productteaser .price .regularPrice {
+    text-decoration: line-through;
+    font-size: 0.8rem;
+}
+
+.productteaser .price .discountedPrice {
+    font-weight: bold;
+    color: rgb(var(--venia-teal));
+    font-size: 1.2rem;
 }
 
 .productteaser .item__badge {
