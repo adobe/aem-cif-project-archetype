@@ -254,8 +254,8 @@
 }
 
 .fieldIcons__input > input {
-    padding-left: calc(1.875rem * var(--iconsBefore) + 0.375rem - 1px);
-    padding-right: calc(1.875rem * var(--iconsAfter) + 0.375rem - 1px);
+    padding-left: calc(1.875rem * var(--iconsBefore) - -0.375rem - 1px);
+    padding-right: calc(1.875rem * var(--iconsAfter) - -0.375rem - 1px);
 }
 
 .fieldIcons__before,
