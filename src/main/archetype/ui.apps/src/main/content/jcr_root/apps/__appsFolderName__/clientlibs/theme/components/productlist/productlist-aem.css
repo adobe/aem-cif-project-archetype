@@ -1,8 +1,7 @@
 .category__pagination_root {
     display: grid;
-    grid-auto-columns: 2.75rem;
     grid-template-rows: 1fr;
-    grid-column-gap: 0.25rem;
+    grid-column-gap: 0.7rem;
     justify-content: center;
     padding-top: 1rem;
     padding-bottom: 1rem;
@@ -26,7 +25,8 @@
 }
 
 .category__pagination_tilebutton-text {
-    border: 0px;
+    border: 0;
+    padding: 0.1rem 0.2rem;
 }
 
 .category__pagination_icon-root {
