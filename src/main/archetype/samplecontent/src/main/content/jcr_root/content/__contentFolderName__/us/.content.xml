@@ -3,7 +3,6 @@
     jcr:primaryType="cq:Page">
     <jcr:content
         cq:allowedTemplates="[/conf/${confFolderName}/settings/wcm/templates/landing-page]"
-        cq:graphqlClient="default"
         cq:redirectTarget="/content/${contentFolderName}/us/en"
         cq:template="/conf/${confFolderName}/settings/wcm/templates/root-page"
         jcr:primaryType="cq:PageContent"
