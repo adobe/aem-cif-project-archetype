@@ -7,6 +7,6 @@
         cq:template="/conf/${confFolderName}/settings/wcm/templates/root-page"
         jcr:primaryType="cq:PageContent"
         jcr:title="United States"
-        sling:resourceType="${appsFolderName}/components/structure/rootpage"/>
+        sling:resourceType="${appsFolderName}/components/structure/page"/>
     <en/>
 </jcr:root>
