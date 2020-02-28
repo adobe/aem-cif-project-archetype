@@ -63,6 +63,7 @@ The latest version of the AEM CIF Project Archetype, requires the below minimum 
 
 | Archetype | AEM 6.4 | AEM 6.5 | Magento                   | CIF Connector | Java |
 | --------- | ------- | ------- | ------------------------- | ------------- | ---- |
+| 0.9.0     | 6.4.4.0 | 6.5.0   | 2.3.4                     | 0.9.0         | 1.8  |
 | 0.7.0<sup>\**</sup> | 6.4.4.0 | 6.5.0   | 2.3.3                     | 0.8.0         | 1.8  |
 | 0.6.x     | 6.4.4.0 | 6.5.0   | 2.3.2<sup>*</sup> / 2.3.3 | 0.7.0         | 1.8  |
 | 0.5.0     | 6.4.4.0 | 6.5.0   | 2.3.2<sup>*</sup> / 2.3.3 | 0.6.0         | 1.8  |
