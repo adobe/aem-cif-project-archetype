@@ -115,10 +115,6 @@ div .gallery__items {
     bottom: 0;
 }
 
-.category__placeholder {
-    height: 100vh;
-}
-
 .category__categoryTitle {
     color: rgb(var(--venia-text));
     font-size: 1.375rem;
