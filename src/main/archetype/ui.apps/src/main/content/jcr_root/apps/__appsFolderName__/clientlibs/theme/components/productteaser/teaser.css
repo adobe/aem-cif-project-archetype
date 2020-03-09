@@ -2,22 +2,9 @@
     position: relative;
 }
 
-.productteaser .blank-placeholder {
-    text-align: center;
-    background-color: #fafafa;
-    margin: 1rem 0;
-    padding: 1rem;
-    line-height: 3rem;
-    border: 3px #ccc dashed;
-}
-
-.productteaser .blank-placeholder p {
-    text-align: left;
-}
-
 .productteaser .item__images {
     display: grid;
-    grid-template-areas: 'main';
+    grid-template-areas: "main";
 }
 
 .productteaser .item__image {
@@ -42,7 +29,7 @@
     font-size: 22px;
     color: #ffffff;
     font-weight: 900;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.9);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
 }
 
 .productteaser .price {
@@ -53,7 +40,7 @@
     font-size: 18px;
     color: #ffffff;
     font-weight: 900;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.9);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
 }
 
 .productteaser .price .regularPrice {
@@ -79,7 +66,7 @@
 .productteaser .item__badge::after {
     position: absolute;
     z-index: -1;
-    content: '';
+    content: "";
     display: block;
     border: 5px solid #2980b9;
     border-top-color: transparent;
@@ -101,10 +88,10 @@
     width: 225px;
     padding: 15px 0;
     background-color: #3498db;
-    box-shadow: 0 5px 10px rgba(0,0,0,.1);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     color: #fff;
-    font: 700 18px/1 'Lato', sans-serif;
-    text-shadow: 0 1px 1px rgba(0,0,0,.2);
+    font: 700 18px/1 "Lato", sans-serif;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
     text-transform: uppercase;
     text-align: center;
     left: -25px;
