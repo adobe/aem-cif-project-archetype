@@ -55,6 +55,15 @@
                 <extensions>true</extensions>
                 <configuration>
                     <group>${packageGroup}</group>
+#if ( $optionEmbedConnector == "y" )
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.adobe.commerce.cif</groupId>
+                            <artifactId>cif-connector-content</artifactId>
+                            <version>${cif.connector.version}</version>
+                        </dependency>
+                    </dependencies>
+#end
                 </configuration>
             </plugin>
             <plugin>
@@ -89,6 +98,14 @@
             <artifactId>uber-jar</artifactId>
             <classifier>apis</classifier>
         </dependency>
+
+#if ( $optionEmbedConnector == "y" )
+        <dependency>
+            <groupId>com.adobe.commerce.cif</groupId>
+            <artifactId>cif-connector-content</artifactId>
+            <type>zip</type>
+        </dependency>
+#end
 
         <dependency>
             <groupId>com.adobe.commerce.cif</groupId>
