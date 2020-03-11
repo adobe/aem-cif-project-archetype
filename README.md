@@ -29,9 +29,10 @@ mvn archetype:generate \
     -DarchetypeVersion=x.y.z
 ```
 
-Where `x.y.z` is the archetype version number that you want to use (see archetype [versions](VERSIONS.md)). By default, generated projects depend on the [CIF connector](https://github.com/adobe/commerce-cif-connector). So make sure you have a compatible version (see [requirements](#requirements) below) installed on your AEM instance. 
-
+Where `x.y.z` is the archetype version number that you want to use (see archetype [versions](VERSIONS.md)). Generated projects depend on the [CIF Connector](https://github.com/adobe/commerce-cif-connector). By default, the CIF Connector is not included in the generated project and must be installed separately.
 For on-prem installations only, we recommend to embed the CIF connector into your project. This can be achieved by generating a project using the `-DoptionEmbedConnector=y` option.
+
+So make sure you have a compatible version (see [requirements](#requirements) below) installed on your AEM instance. 
 
 ### Available properties
 
