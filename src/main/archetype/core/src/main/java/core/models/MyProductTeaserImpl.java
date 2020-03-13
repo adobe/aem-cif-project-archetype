@@ -19,6 +19,7 @@ import java.time.format.DateTimeFormatter;
 
 import javax.annotation.PostConstruct;
 
+import com.adobe.cq.commerce.core.components.models.common.Price;
 import com.adobe.cq.commerce.core.components.models.productteaser.ProductTeaser;
 import com.adobe.cq.commerce.core.components.models.retriever.AbstractProductRetriever;
 
@@ -81,6 +82,9 @@ public class MyProductTeaserImpl implements MyProductTeaser {
     public String getFormattedPrice() {
         return productTeaser.getFormattedPrice();
     }
+
+    @Override
+    public Price getPriceRange() { return productTeaser.getPriceRange(); }
 
     @Override
     public String getImage() {
