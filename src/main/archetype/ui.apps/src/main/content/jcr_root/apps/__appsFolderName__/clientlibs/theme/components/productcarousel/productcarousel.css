@@ -25,44 +25,42 @@
     max-height: 240px;
 }
 
-.productcarousel {
-    margin: 50px auto;
-    overflow: hidden;
-    position: relative;
+.productcarousel__container {
+    margin: 25px auto;
     width: 240px;
 }
 
 @media screen and (min-width: 790px) {
-    .productcarousel {
+    .productcarousel__container {
         width: 720px;
     }
 }
 
 @media screen and (min-width: 1090px) {
-    .productcarousel {
+    .productcarousel__container {
         width: 960px;
     }
 }
 
 @media screen and (min-width: 1380px) {
-    .productcarousel {
+    .productcarousel__container {
         width: 1200px;
     }
 }
 
 @media screen and (min-width: 1650px) {
-    .productcarousel {
+    .productcarousel__container {
         width: 1440px;
     }
 }
 
-.productcarousel:before,
-.productcarousel:after {
+.productcarousel__root:before,
+.productcarousel__root:after {
     content: "";
     display: table;
 }
 
-.productcarousel:after {
+.productcarousel__root:after {
     clear: both;
 }
 
@@ -70,9 +68,7 @@
     border: 10px solid #fff;
     float: left;
     font-size: 20px;
-    height: 307;
     text-align: center;
-    width: 240px;
 }
 
 .productcarousel__root {
@@ -108,7 +104,7 @@
     outline: none;
     cursor: pointer;
     height: 20px;
-    margin-top: -25px;
+    margin-top: 60px;
     position: absolute;
     top: 50%;
     width: 20px;
