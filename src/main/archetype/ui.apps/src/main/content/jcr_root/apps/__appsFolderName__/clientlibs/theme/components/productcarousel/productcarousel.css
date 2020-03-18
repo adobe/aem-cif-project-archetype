@@ -25,44 +25,43 @@
     max-height: 240px;
 }
 
-.productcarousel {
-    margin: 50px auto;
-    overflow: hidden;
+.productcarousel__container {
     position: relative;
+    margin: 25px auto;
     width: 240px;
 }
 
 @media screen and (min-width: 790px) {
-    .productcarousel {
+    .productcarousel__container {
         width: 720px;
     }
 }
 
 @media screen and (min-width: 1090px) {
-    .productcarousel {
+    .productcarousel__container {
         width: 960px;
     }
 }
 
 @media screen and (min-width: 1380px) {
-    .productcarousel {
+    .productcarousel__container {
         width: 1200px;
     }
 }
 
 @media screen and (min-width: 1650px) {
-    .productcarousel {
+    .productcarousel__container {
         width: 1440px;
     }
 }
 
-.productcarousel:before,
-.productcarousel:after {
+.productcarousel__root:before,
+.productcarousel__root:after {
     content: "";
     display: table;
 }
 
-.productcarousel:after {
+.productcarousel__root:after {
     clear: both;
 }
 
@@ -70,7 +69,6 @@
     border: 10px solid #fff;
     float: left;
     font-size: 20px;
-    height: 307;
     text-align: center;
     width: 240px;
 }
@@ -117,7 +115,7 @@
 .productcarousel__btn--next {
     border-bottom: 8px solid #aaa;
     border-right: 8px solid #aaa;
-    right: 5%;
+    right: 0;
     -moz-transform: rotate(315deg);
     -webkit-transform: rotate(315deg);
     transform: rotate(315deg);
@@ -126,7 +124,7 @@
 .productcarousel__btn--prev {
     border-bottom: 8px solid #aaa;
     border-left: 8px solid #aaa;
-    left: 5%;
+    left: 0;
     -moz-transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
