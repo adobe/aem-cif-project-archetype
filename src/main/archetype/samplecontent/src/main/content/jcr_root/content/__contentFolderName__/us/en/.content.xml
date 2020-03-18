@@ -8,6 +8,7 @@
         cq:cifSearchResultsPage="/content/${contentFolderName}/us/en/search"
         cq:lastModified="{Date}2019-04-17T13:22:49.862+02:00"
         cq:lastModifiedBy="admin"
+        cq:conf="/conf/${appsFolderName}"
         cq:lastRolledout="{Date}2019-04-17T13:22:08.490+02:00"
         cq:lastRolledoutBy="admin"
         cq:propertyInheritanceCancelled="[jcr:language]"
