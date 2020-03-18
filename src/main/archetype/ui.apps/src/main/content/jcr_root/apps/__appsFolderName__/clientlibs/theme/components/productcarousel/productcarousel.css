@@ -115,7 +115,7 @@
 .productcarousel__btn--next {
     border-bottom: 8px solid #aaa;
     border-right: 8px solid #aaa;
-    right: 2%;
+    right: 0;
     -moz-transform: rotate(315deg);
     -webkit-transform: rotate(315deg);
     transform: rotate(315deg);
@@ -124,7 +124,7 @@
 .productcarousel__btn--prev {
     border-bottom: 8px solid #aaa;
     border-left: 8px solid #aaa;
-    left: 2%;
+    left: 0;
     -moz-transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
