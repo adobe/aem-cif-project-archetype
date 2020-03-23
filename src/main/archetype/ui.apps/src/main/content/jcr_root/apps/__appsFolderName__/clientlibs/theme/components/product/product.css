@@ -442,9 +442,12 @@
     }
 }
 
+.productFullDetail__title .price {
+    text-align: right;
+}
+
 .productFullDetail__root .price {
     display: block;
-    text-align: right;
 }
 
 .productFullDetail__root .price .regularPrice {
@@ -493,6 +496,23 @@
 }
 
 .productFullDetail__quantityTitle {
+}
+
+.productFullDetail__groupedProducts table {
+    width: 100%;
+}
+
+.productFullDetail__groupedProducts th, td {
+    padding: 15px;
+}
+
+.productFullDetail__groupedProducts th, tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.productFullDetail__groupedProducts .price {
+    margin-top: 5px;
+    font-weight: bold;
 }
 
 .productFullDetail__cartActions {
