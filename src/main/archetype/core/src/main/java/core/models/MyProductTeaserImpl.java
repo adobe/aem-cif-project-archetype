@@ -112,6 +112,9 @@ public class MyProductTeaserImpl implements MyProductTeaser {
     }
 
     @Override
+    public Boolean isVirtualProduct() { return productTeaser.isVirtualProduct(); }
+
+    @Override
     public AbstractProductRetriever getProductRetriever() {
         return productRetriever;
     }
