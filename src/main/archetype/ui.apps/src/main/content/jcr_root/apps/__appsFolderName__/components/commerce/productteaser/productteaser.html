@@ -22,7 +22,7 @@
     data-sly-test.hasProduct="${symbol_dollar}{product.url}">
     <sly data-sly-call="${symbol_dollar}{clientlib.all @ categories='core.cif.components.productteaser.v1'}"></sly>
 
-    <div data-sly-test="${symbol_dollar}{isConfigured && hasProduct}" class="item__root" data-cmp-is="productteaser">
+    <div data-sly-test="${symbol_dollar}{isConfigured && hasProduct}" class="item__root" data-cmp-is="productteaser" data-virtual="${product.virtualProduct}">
         <div data-sly-test="${symbol_dollar}{product.showBadge}" class="item__badge">
             <span>${symbol_dollar}{properties.text || 'New'}</span>
         </div>
