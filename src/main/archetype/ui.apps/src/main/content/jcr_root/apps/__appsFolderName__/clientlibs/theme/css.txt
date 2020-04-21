@@ -29,3 +29,4 @@ components/productlist/productlist-component.css
 components/productteaser/teaser.css
 
 components/teaser/teaser.css
+components/searchresults/searchresults.css
