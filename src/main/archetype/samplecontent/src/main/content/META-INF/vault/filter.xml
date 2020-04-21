@@ -3,4 +3,5 @@
     <filter root="/content/${contentFolderName}" mode="update"/>
     <filter root="/content/dam/${contentFolderName}" mode="update"/>
     <filter root="/apps/${appsFolderName}/config" mode="update"/>
+    <filter root="/etc/map.publish" mode="update"/>
 </workspaceFilter>
