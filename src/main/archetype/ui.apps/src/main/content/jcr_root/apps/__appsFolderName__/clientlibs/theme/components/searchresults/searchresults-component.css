@@ -1,0 +1,30 @@
+
+.search__root {
+    display: grid;
+    grid-template-areas: "filters items";
+    grid-template-columns: 1fr 5fr;
+}
+
+.search__filters {
+    grid-area: filters;
+    padding-right: 15px;
+}
+
+.search__filters > ul {
+    margin-bottom: 2rem;
+}
+
+.search__filters h5 {
+    font-size:1.2rem;
+    margin-bottom:1rem;
+}
+
+.search__filters ul ul {
+    margin-left:5px;
+}
+
+.search__filters li {
+    display: block;
+    margin: 3px 0;
+}
+
