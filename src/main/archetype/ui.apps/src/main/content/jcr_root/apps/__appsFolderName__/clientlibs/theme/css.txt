@@ -26,6 +26,8 @@ components/productcarousel/productcarousel.css
 components/productlist/productlist-aem.css
 components/productlist/productlist-component.css
 
+components/searchresults/searchresults-component.css
+
 components/productteaser/teaser.css
 
 components/teaser/teaser.css
