@@ -76,8 +76,8 @@
 }
 
 .category__style_grid .gallery__items {
+    align-content: start;
     display: grid;
-    grid-area: items;
     grid-gap: 1rem;
     grid-template-columns: repeat(3, 1fr);
     margin-bottom: 10px;
