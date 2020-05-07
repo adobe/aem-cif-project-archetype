@@ -4,4 +4,5 @@
     <filter root="/content/dam/${contentFolderName}" mode="update"/>
     <filter root="/apps/${appsFolderName}/config" mode="update"/>
     <filter root="/etc/map.publish" mode="update"/>
+    <filter root="/var/commerce/products" mode="update"/>
 </workspaceFilter>
