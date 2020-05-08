@@ -80,8 +80,7 @@ public class MyProductTeaserImpl implements MyProductTeaser {
 
     @Override
     public String getFormattedPrice() {
-        // ProductTeaser.getFormattedPrice is deprecated
-        return null;
+        return productTeaser.getPriceRange().getFormattedFinalPrice();
     }
 
     @Override
