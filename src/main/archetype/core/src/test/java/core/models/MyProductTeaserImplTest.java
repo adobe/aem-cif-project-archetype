@@ -13,33 +13,48 @@
  ******************************************************************************/
 package ${package}.core.models;
 
+import com.adobe.cq.commerce.core.components.models.common.Price;
 import com.adobe.cq.commerce.core.components.models.productteaser.ProductTeaser;
 import com.adobe.cq.commerce.core.components.models.retriever.AbstractProductRetriever;
 import com.adobe.cq.commerce.magento.graphql.ProductInterface;
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.scripting.WCMBindingsConstants;
+import io.wcm.testing.mock.aem.junit5.AemContext;
+import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import junit.framework.Assert;
-import org.apache.sling.api.resource.ValueMap;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.scripting.SlingBindings;
+import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.mockito.internal.util.reflection.Whitebox;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+@ExtendWith(AemContextExtension.class)
 class MyProductTeaserImplTest {
 
     private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-    @InjectMocks
-    private MyProductTeaserImpl underTest;
+    private static final String PAGE = "/content/pageA";
 
-    @Mock
+    private static final String PRODUCTTEASER_NO_BADGE = "/content/pageA/jcr:content/root/responsivegrid/productteaser-no-badge";
+    private static final String PRODUCTTEASER_BADGE_FALSE = "/content/pageA/jcr:content/root/responsivegrid/productteaser-badge-false";
+    private static final String PRODUCTTEASER_BADGE_TRUE_NO_AGE = "/content/pageA/jcr:content/root/responsivegrid/productteaser-badge-true-no-age";
+    private static final String PRODUCTTEASER_BADGE_TRUE_WITH_AGE = "/content/pageA/jcr:content/root/responsivegrid/productteaser-badge-true-with-age";
+
+    public final AemContext context = new AemContext(ResourceResolverType.JCR_MOCK);
+
+    private MyProductTeaser underTest;
+
     private ProductTeaser productTeaser;
-
-    @Mock
-    private ValueMap properties;
 
     @Mock
     private AbstractProductRetriever productRetriever;
@@ -51,31 +66,49 @@ class MyProductTeaserImplTest {
     void before() {
         MockitoAnnotations.initMocks(this);
         Mockito.when(productRetriever.fetchProduct()).thenReturn(product);
-    }
-
-    @Test
-    void testShowBadge_noBadge() throws Exception {
-        Mockito.when(properties.get("badge", false)).thenReturn(false);
-
-        Assert.assertNotNull(underTest);
-        Assert.assertFalse(underTest.isShowBadge());
-    }
-
-    @Test
-    void testShowBadge_noAge() throws Exception {
-        Mockito.when(properties.get("badge", false)).thenReturn(true);
-        Mockito.when(properties.get("age", 0)).thenReturn(1);
         Mockito.when(product.getCreatedAt()).thenReturn("2020-01-01 00:00:00");
 
+        context.load().json("/context/jcr-content.json", "/content");
+        context.addModelsForClasses(MyProductTeaserImpl.class);
+    }
+
+    void setup(String resourcePath) {
+        Page page = context.currentPage(PAGE);
+        context.currentResource(resourcePath);
+        Resource teaserResource = context.resourceResolver().getResource(resourcePath);
+
+        // This sets the page attribute injected in the models with @Inject or @ScriptVariable
+        SlingBindings slingBindings = (SlingBindings) context.request().getAttribute(SlingBindings.class.getName());
+        slingBindings.setResource(teaserResource);
+        slingBindings.put(WCMBindingsConstants.NAME_CURRENT_PAGE, page);
+        slingBindings.put(WCMBindingsConstants.NAME_PROPERTIES, teaserResource.getValueMap());
+        try {
+            slingBindings.put("urlProvider", Mockito.mock(Class.forName( "com.adobe.cq.commerce.core.components.services.UrlProvider" )));
+        } catch( ClassNotFoundException e ) {
+            //probably core-cif-components-core version < 0.10.2
+        }
+
+        underTest = context.request().adaptTo(MyProductTeaser.class);
+        if (underTest != null) {
+            productTeaser = Mockito.spy((ProductTeaser) Whitebox.getInternalState(underTest, "productTeaser"));
+            Whitebox.setInternalState(productTeaser, "productRetriever", productRetriever);
+            Whitebox.setInternalState(underTest, "productTeaser", productTeaser);
+            Whitebox.setInternalState(underTest, "productRetriever", productRetriever);
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {PRODUCTTEASER_NO_BADGE, PRODUCTTEASER_BADGE_FALSE, PRODUCTTEASER_BADGE_TRUE_NO_AGE})
+    void testShowBadge_false(String resourcePath) throws Exception {
+        setup(resourcePath);
         Assert.assertNotNull(underTest);
         Assert.assertFalse(underTest.isShowBadge());
     }
 
     @Test
-    void testShowBadge_badge() throws Exception {
-        Mockito.when(properties.get("badge", false)).thenReturn(true);
-        Mockito.when(properties.get("age", 0)).thenReturn(2);
-        Mockito.when(product.getCreatedAt()).thenReturn(LocalDateTime.now().format(formatter));
+    void testShowBadge_true() throws Exception {
+        setup(PRODUCTTEASER_BADGE_TRUE_WITH_AGE);
+        Mockito.when(product.getCreatedAt()).thenReturn(LocalDateTime.now().minusDays(1).format(formatter));
 
         Assert.assertNotNull(underTest);
         Assert.assertTrue(underTest.isShowBadge());
@@ -83,50 +116,54 @@ class MyProductTeaserImplTest {
 
     @Test
     void testGetName() throws Exception {
-        Mockito.when(productTeaser.getName()).thenReturn("TestName");
-        Assert.assertEquals(productTeaser.getName(), underTest.getName());
+        setup(PRODUCTTEASER_NO_BADGE);
+        Mockito.doReturn("TestName").when(productTeaser).getName();
+        Assert.assertEquals("TestName", underTest.getName());
     }
 
     @Test
     void testGetPriceRange() {
-        Assert.assertEquals(productTeaser.getPriceRange(), underTest.getPriceRange());
+        setup(PRODUCTTEASER_NO_BADGE);
+        Price priceRange = Mockito.mock(Price.class);
+        Mockito.doReturn(priceRange).when(productTeaser).getPriceRange();
+        Assert.assertEquals(priceRange, underTest.getPriceRange());
     }
 
     @Test
     void testGetImage() {
-        Mockito.when(productTeaser.getImage()).thenReturn("TestImage");
-        Assert.assertEquals(productTeaser.getImage(), underTest.getImage());
+        setup(PRODUCTTEASER_NO_BADGE);
+        Mockito.doReturn("TestImage").when(productTeaser).getImage();
+        Assert.assertEquals("TestImage", underTest.getImage());
     }
 
     @Test
     void testGetUrl() {
-        Mockito.when(productTeaser.getUrl()).thenReturn("TestUrl");
-        Assert.assertEquals(productTeaser.getUrl(), underTest.getUrl());
+        setup(PRODUCTTEASER_NO_BADGE);
+        Mockito.doReturn("TestUrl").when(productTeaser).getUrl();
+        Assert.assertEquals("TestUrl", underTest.getUrl());
     }
 
     @Test
     void testGetSku() {
-        Mockito.when(productTeaser.getSku()).thenReturn("TestSKU");
-        Assert.assertEquals(productTeaser.getSku(), underTest.getSku());
+        setup(PRODUCTTEASER_NO_BADGE);
+        Mockito.doReturn("TestSKU").when(productTeaser).getSku();
+        Assert.assertEquals("TestSKU", underTest.getSku());
     }
 
     @Test
     public void testGetCallToAction() {
-        Mockito.when(productTeaser.getCallToAction()).thenReturn("TestCTA");
-        Assert.assertEquals(productTeaser.getCallToAction(), underTest.getCallToAction());
+        setup(PRODUCTTEASER_NO_BADGE);
+        Mockito.doReturn("TestCTA").when(productTeaser).getCallToAction();
+        Assert.assertEquals("TestCTA", underTest.getCallToAction());
     }
 
     @Test
     void testIsVirtualProduct() {
-        Mockito.when(productTeaser.isVirtualProduct()).thenReturn(true);
+        setup(PRODUCTTEASER_NO_BADGE);
+        Mockito.doReturn(true).when(productTeaser).isVirtualProduct();
         Assert.assertTrue(underTest.isVirtualProduct());
 
-        Mockito.when(productTeaser.isVirtualProduct()).thenReturn(false);
+        Mockito.doReturn(false).when(productTeaser).isVirtualProduct();
         Assert.assertFalse(underTest.isVirtualProduct());
-    }
-
-    @Test
-    void testGetProductRetriever() {
-        Assert.assertEquals(productRetriever, underTest.getProductRetriever());
     }
 }
