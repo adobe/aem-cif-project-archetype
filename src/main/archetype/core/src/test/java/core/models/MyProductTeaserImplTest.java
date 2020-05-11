@@ -33,7 +33,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.internal.util.reflection.Whitebox;
+import org.mockito.internal.util.reflection.FieldSetter;
+import org.mockito.internal.util.reflection.FieldReader;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -72,7 +73,7 @@ class MyProductTeaserImplTest {
         context.addModelsForClasses(MyProductTeaserImpl.class);
     }
 
-    void setup(String resourcePath) {
+    void setup(String resourcePath) throws Exception {
         Page page = context.currentPage(PAGE);
         context.currentResource(resourcePath);
         Resource teaserResource = context.resourceResolver().getResource(resourcePath);
@@ -90,10 +91,10 @@ class MyProductTeaserImplTest {
 
         underTest = context.request().adaptTo(MyProductTeaser.class);
         if (underTest != null) {
-            productTeaser = Mockito.spy((ProductTeaser) Whitebox.getInternalState(underTest, "productTeaser"));
-            Whitebox.setInternalState(productTeaser, "productRetriever", productRetriever);
-            Whitebox.setInternalState(underTest, "productTeaser", productTeaser);
-            Whitebox.setInternalState(underTest, "productRetriever", productRetriever);
+            Class<? extends MyProductTeaser> clazz = underTest.getClass();
+            productTeaser = Mockito.spy((ProductTeaser)(new FieldReader(underTest, clazz.getDeclaredField("productTeaser")).read()));
+            FieldSetter.setField(underTest, clazz.getDeclaredField("productTeaser"), productTeaser);
+            FieldSetter.setField(underTest, clazz.getDeclaredField("productRetriever"), productRetriever);
         }
     }
 
@@ -122,7 +123,7 @@ class MyProductTeaserImplTest {
     }
 
     @Test
-    void testGetPriceRange() {
+    void testGetPriceRange() throws Exception {
         setup(PRODUCTTEASER_NO_BADGE);
         Price priceRange = Mockito.mock(Price.class);
         Mockito.doReturn(priceRange).when(productTeaser).getPriceRange();
@@ -130,35 +131,35 @@ class MyProductTeaserImplTest {
     }
 
     @Test
-    void testGetImage() {
+    void testGetImage() throws Exception {
         setup(PRODUCTTEASER_NO_BADGE);
         Mockito.doReturn("TestImage").when(productTeaser).getImage();
         Assert.assertEquals("TestImage", underTest.getImage());
     }
 
     @Test
-    void testGetUrl() {
+    void testGetUrl() throws Exception {
         setup(PRODUCTTEASER_NO_BADGE);
         Mockito.doReturn("TestUrl").when(productTeaser).getUrl();
         Assert.assertEquals("TestUrl", underTest.getUrl());
     }
 
     @Test
-    void testGetSku() {
+    void testGetSku() throws Exception {
         setup(PRODUCTTEASER_NO_BADGE);
         Mockito.doReturn("TestSKU").when(productTeaser).getSku();
         Assert.assertEquals("TestSKU", underTest.getSku());
     }
 
     @Test
-    public void testGetCallToAction() {
+    public void testGetCallToAction() throws Exception {
         setup(PRODUCTTEASER_NO_BADGE);
         Mockito.doReturn("TestCTA").when(productTeaser).getCallToAction();
         Assert.assertEquals("TestCTA", underTest.getCallToAction());
     }
 
     @Test
-    void testIsVirtualProduct() {
+    void testIsVirtualProduct() throws Exception {
         setup(PRODUCTTEASER_NO_BADGE);
         Mockito.doReturn(true).when(productTeaser).isVirtualProduct();
         Assert.assertTrue(underTest.isVirtualProduct());
