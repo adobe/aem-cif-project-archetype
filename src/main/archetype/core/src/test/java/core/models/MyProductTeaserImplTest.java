@@ -38,18 +38,19 @@ import org.mockito.internal.util.reflection.FieldReader;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
 
 @ExtendWith(AemContextExtension.class)
 class MyProductTeaserImplTest {
 
-    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private final static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-    private static final String PAGE = "/content/pageA";
-
-    private static final String PRODUCTTEASER_NO_BADGE = "/content/pageA/jcr:content/root/responsivegrid/productteaser-no-badge";
-    private static final String PRODUCTTEASER_BADGE_FALSE = "/content/pageA/jcr:content/root/responsivegrid/productteaser-badge-false";
-    private static final String PRODUCTTEASER_BADGE_TRUE_NO_AGE = "/content/pageA/jcr:content/root/responsivegrid/productteaser-badge-true-no-age";
-    private static final String PRODUCTTEASER_BADGE_TRUE_WITH_AGE = "/content/pageA/jcr:content/root/responsivegrid/productteaser-badge-true-with-age";
+    private static final String PAGE = "/content/page";
+    private static final String PRODUCTTEASER_NO_BADGE = "productteaser-no-badge";
+    private static final String PRODUCTTEASER_BADGE_FALSE = "productteaser-badge-false";
+    private static final String PRODUCTTEASER_BADGE_TRUE_NO_AGE = "productteaser-badge-true-no-age";
+    private static final String PRODUCTTEASER_BADGE_TRUE_WITH_AGE = "productteaser-badge-true-with-age";
 
     public final AemContext context = new AemContext(ResourceResolverType.JCR_MOCK);
 
@@ -64,19 +65,37 @@ class MyProductTeaserImplTest {
     private ProductInterface product;
 
     @BeforeEach
-    void before() {
+    void beforeEach() {
         MockitoAnnotations.initMocks(this);
         Mockito.when(productRetriever.fetchProduct()).thenReturn(product);
         Mockito.when(product.getCreatedAt()).thenReturn("2020-01-01 00:00:00");
 
-        context.load().json("/context/jcr-content.json", "/content");
+        Page page = context.create().page(PAGE);
+        createResource(page, PRODUCTTEASER_NO_BADGE, null, null);
+        createResource(page, PRODUCTTEASER_BADGE_FALSE, false, null);
+        createResource(page, PRODUCTTEASER_BADGE_TRUE_NO_AGE, true, null);
+        createResource(page, PRODUCTTEASER_BADGE_TRUE_WITH_AGE, true, 3);
+
         context.addModelsForClasses(MyProductTeaserImpl.class);
     }
 
-    void setup(String resourcePath) throws Exception {
+    void createResource(Page page, String name, Object badge, Object age) {
+        Map<String, Object> props = new HashMap<>();
+        props.put("sling:resourceType", "venia/components/commerce/productteaser");
+        props.put("sling:resourceSuperType", "core/cif/components/commerce/productteaser/v1/productteaser");
+        if (badge != null) {
+            props.put("badge", badge);
+            if (age != null) {
+                props.put("age", age);
+            }
+        }
+        context.create().resource(page, name, props);
+    }
+
+    void setup(String resourceName) throws Exception {
         Page page = context.currentPage(PAGE);
-        context.currentResource(resourcePath);
-        Resource teaserResource = context.resourceResolver().getResource(resourcePath);
+        context.currentResource(PAGE + "/jcr:content/" +resourceName);
+        Resource teaserResource = context.resourceResolver().getResource(PAGE + "/jcr:content/" +resourceName);
 
         // This sets the page attribute injected in the models with @Inject or @ScriptVariable
         SlingBindings slingBindings = (SlingBindings) context.request().getAttribute(SlingBindings.class.getName());
