@@ -20,8 +20,7 @@
                     jcr:lastModified="{Date}2019-03-26T14:33:35.239+02:00"
                     jcr:lastModifiedBy="admin"
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="${appsFolderName}/components/commerce/productlist"
-                    cq:styleIds="[1570700958900]" />
+                    sling:resourceType="${appsFolderName}/components/commerce/productlist"/>
             </responsivegrid>
         </root>
     </jcr:content>
