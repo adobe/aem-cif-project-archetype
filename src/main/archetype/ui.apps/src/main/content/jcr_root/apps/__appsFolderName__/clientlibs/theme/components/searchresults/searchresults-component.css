@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: minmax(240px, 1fr) auto;
     grid-column-gap: 2rem;
+    grid-row-gap: 1rem;
 }
 
 .filterSection-header {
@@ -99,4 +100,22 @@ label {
 
 .icon-open {
     display: none;
+}
+
+.search__filters {
+    grid-row-start: 1;
+    grid-row-end: 2 span;
+}
+
+.sort__fields {
+    float: right;
+}
+
+.sort__fields label {
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.sort__fields select {
+    font-size: 1rem;
 }
