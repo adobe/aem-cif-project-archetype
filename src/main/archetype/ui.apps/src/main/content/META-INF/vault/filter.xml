@@ -3,5 +3,6 @@
     <filter root="/apps/${appsFolderName}">
         <exclude pattern="/apps/${appsFolderName}/install" />
         <exclude pattern="/apps/${appsFolderName}/config" />
+        <exclude pattern="/apps/${appsFolderName}/config.publish" />
     </filter>
 </workspaceFilter>
