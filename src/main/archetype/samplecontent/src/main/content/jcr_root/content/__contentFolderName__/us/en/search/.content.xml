@@ -7,7 +7,7 @@
         cq:lastModifiedBy="admin"
         cq:lastRolledout="{Date}2019-04-17T13:22:08.551+02:00"
         cq:lastRolledoutBy="admin"
-        cq:template="/conf/${confFolderName}/settings/wcm/templates/content-page"
+        cq:template="/conf/${confFolderName}/settings/wcm/templates/search-results"
         jcr:mixinTypes="[cq:LiveRelationship]"
         jcr:primaryType="cq:PageContent"
         jcr:title="Search Results"

@@ -6,4 +6,5 @@
     <filter root="/apps/${appsFolderName}/config.publish" mode="update"/>
     <filter root="/etc/map.publish" mode="update"/>
     <filter root="/var/commerce/products" mode="update"/>
+    <filter root="/content/experience-fragments/${contentFolderName}" mode="update"/>
 </workspaceFilter>
