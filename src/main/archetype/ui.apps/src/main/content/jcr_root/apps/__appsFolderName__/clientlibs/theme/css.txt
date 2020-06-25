@@ -12,6 +12,8 @@ components/header/header-component.css
 
 components/heroimage/hero-image.less
 
+components/loadingindicator/loader.css
+
 components/minicart/flow.css
 components/minicart/icons.css
 components/minicart/minicart.css
