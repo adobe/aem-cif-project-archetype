@@ -46,18 +46,6 @@
                 <searchbar jcr:primaryType="nt:unstructured"
                            sling:resourceType="${appsFolderName}/components/commerce/searchbar"/>
             </header>
-            <product-list-container
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="wcm/foundation/components/responsivegrid">
-                <productlist
-                        jcr:created="{Date}2019-03-26T14:33:35.239+02:00"
-                        jcr:createdBy="admin"
-                        jcr:lastModified="{Date}2019-03-26T14:33:35.239+02:00"
-                        jcr:lastModifiedBy="admin"
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="${appsFolderName}/components/commerce/productlist"
-                        editable="{Boolean}true"/>
-            </product-list-container>
             <responsivegrid
                     jcr:created="{Date}2018-10-17T10:18:24.968+02:00"
                     jcr:createdBy="admin"
