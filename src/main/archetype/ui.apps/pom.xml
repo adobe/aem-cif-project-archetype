@@ -115,7 +115,7 @@
 
         <dependency>
             <groupId>com.adobe.cq</groupId>
-            <artifactId>core.wcm.components.all</artifactId>
+            <artifactId>core.wcm.components.content</artifactId>
             <type>zip</type>
         </dependency>
     </dependencies>
