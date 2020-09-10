@@ -5,7 +5,7 @@
 # CIF Project Archetype
 
 
-> :warning: **NOTE**: The CIF Project Archetype has been merged with AEM Project Archetype. For new CIF projects, user [AEM Project Archetype](https://github.com/adobe/aem-project-archetype) as the starting point. The sample store-front project has been extracted from the CIF Archetype (after v0.11.0) and is now available in a separate GitHub repository. For more details, refer to [CIF Venia Reference Site Readme](https://github.com/adobe/aem-cif-guides-venia/blob/main/README.md). 
+> :warning: **NOTE**: The CIF Project Archetype has been merged with AEM Project Archetype. For new CIF projects, use [AEM Project Archetype](https://github.com/adobe/aem-project-archetype) as the starting point. The sample store-front project has been extracted from the CIF Archetype (after v0.11.0) and is now available in a separate GitHub repository. For more details, refer to [CIF Venia Reference Site Readme](https://github.com/adobe/aem-cif-guides-venia/blob/main/README.md). 
 
 
 This archetype creates a minimal Adobe Experience Manager CIF project as a starting point for your own projects using [CIF core components](https://github.com/adobe/aem-core-cif-components). The properties that must be provided when using this archetype allow to name as desired all parts of this project.
