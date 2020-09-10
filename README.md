@@ -4,6 +4,10 @@
 
 # CIF Project Archetype
 
+
+> :warning: **NOTE**: The CIF Project Archetype has been merged with AEM Project Archetype. For new CIF projects, user [AEM Project Archetype](https://github.com/adobe/aem-project-archetype) as the starting point. The sample store-front project has been extracted from the CIF Archetype (after v0.11.0) and is now available in a separate GitHub repository. For more details, refer to [CIF Venia Reference Site Readme](https://github.com/adobe/aem-cif-guides-venia/blob/main/README.md). 
+
+
 This archetype creates a minimal Adobe Experience Manager CIF project as a starting point for your own projects using [CIF core components](https://github.com/adobe/aem-core-cif-components). The properties that must be provided when using this archetype allow to name as desired all parts of this project.
 
 This project is based on [aem-project-archetype](https://github.com/adobe/aem-project-archetype).
@@ -96,8 +100,8 @@ Releases of this project are triggered by manually running `mvn release:prepare 
 
 ## Demo Project
 
-For demo purposes, we generate a sample store-front project for the latest commit on the `master` branch. The package includes all required dependencies including the [CIF connector](https://github.com/adobe/commerce-cif-connector). You can download it in the [release](https://github.com/adobe/aem-cif-project-archetype/releases/tag/latest) section and directly install it on your AEM instance.
+For demo purposes, we generate a sample store-front project. This project has been extracted from the CIF Archetype (after v0.11.0) and is now available in a separate GitHub repository. You can download for the latest package from [CIF Venia Reference Site](https://github.com/adobe/aem-cif-guides-venia/releases/tag/venia-2020.9.2). This package includes the latest CIF Core Components version. However, it requires the installation of the CIF Connector. For more details, refer to [CIF Venia Reference Site Readme](https://github.com/adobe/aem-cif-guides-venia/blob/main/README.md). 
 
 The store-front requires an AEM dispatcher with forwarding rules specific to your Magento setup. Please follow the steps as described in the dispatcher [documentation](https://github.com/adobe/aem-core-cif-components/tree/master/dispatcher).
 
-For more information about how to configure the sample project, please refer to the CIF core components [wiki](https://github.com/adobe/aem-core-cif-components/wiki/configuration).
+
